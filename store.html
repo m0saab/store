@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQUADGAMESTN | Official Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #E70013; /* Tunisia Red */
+            --card-bg: #ffffff;
+            --text-main: #ffffff;
+            --text-dark: #000000;
+            --text-muted: #ffd1d1;
+            --border: rgba(255,255,255,0.2);
+            --roundness: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Cairo', sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main);
+            line-height: 1.5;
+            text-align: center; 
+        }
+
+        /* Header */
+        header {
+            padding: 80px 20px 40px;
+        }
+
+        h1 { 
+            font-size: 1.8rem; 
+            letter-spacing: 6px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Shop Grid */
+        .shop-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        /* Card Styling */
+        .product-card {
+            text-align: center; 
+            transition: 0.3s ease;
+        }
+        
+        .img-container {
+            width: 100%;
+            aspect-ratio: 3 / 4; 
+            overflow: hidden;
+            background: #fff;
+            margin-bottom: 20px;
+            border: 4px solid #fff; /* White frame for the images */
+            border-radius: var(--roundness);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc(var(--roundness) - 4px);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.08);
+        }
+
+        .product-info {
+            padding: 0 5px;
+        }
+        .product-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; }
+        .price-tag { font-size: 1.4rem; font-weight: 700; color: #fff; }
+        .shipping-note { display: block; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+
+        .buy-now {
+            display: block;
+            background: #ffffff;
+            color: var(--bg-color);
+            text-decoration: none;
+            padding: 14px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border-radius: 50px; /* Pill shape for a modern look */
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .buy-now:hover { 
+            background: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+        .ig-icon-link {
+            font-size: 2.5rem;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .ig-icon-link:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        .copyright { font-size: 0.8rem; color: #ffd1d1; margin-top: 25px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SQUADGAMESTN</h1>
+    </header>
+
+    <main class="shop-container">
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="1.jpg" alt="Criminal Case Tunisia 3 Cases" class="product-img">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Criminal Case Tunisia 3 Cases</div>
+                    <div class="price-tag">25 DT</div>
+                    <span class="shipping-note">+ 7 DT مصاريف التوصيل</span>
+                    <a href="https://tally.so/r/wojBeO" target="_blank" class="buy-now">اشتري الآن | BUY NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="2.jpg" alt="Criminal Case Tunisia 6 Cases" class="product-img">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Criminal Case Tunisia 6 Cases</div>
+                    <div class="price-tag">35 DT</div>
+                    <span class="shipping-note">+ 7 DT مصاريف التوصيل</span>
+                    <a href="https://tally.so/r/medkpo" target="_blank" class="buy-now">اشتري الآن | BUY NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="3.jpg" alt="UNO KOORA" class="product-img">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">UNO KOORA</div>
+                    <div class="price-tag">35 DT</div>
+                    <span class="shipping-note">+ 7 DT مصاريف التوصيل</span>
+                    <a href="https://tally.so/r/yPMW58" target="_blank" class="buy-now">اشتري الآن | BUY NOW</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="img-container">
+                    <img src="4.jpg" alt="EYY LEE + JASOUS" class="product-img">
+                </div>
+                <div class="product-info">
+                    <div class="product-title">EYY LEE + JASOUS</div>
+                    <div class="price-tag">25 DT</div>
+                    <span class="shipping-note">+ 7 DT مصاريف التوصيل</span>
+                    <a href="#" target="_blank" class="buy-now">اشتري الآن | BUY NOW</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <a href="https://www.instagram.com/squad.games.tn/" class="ig-icon-link" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <div class="copyright">
+            &copy; 2026 SQUADGAMESTN. MADE IN TUNISIA 🇹🇳
+        </div>
+    </footer>
+
+</body>
+</html>
