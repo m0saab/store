@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SQUADGAMESTN | Official Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,114 +14,140 @@
             --text-dark: #000000;
             --text-muted: #ffd1d1;
             --border: rgba(255,255,255,0.2);
-            --roundness: 20px;
+            --roundness: 16px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body { 
             font-family: 'Cairo', sans-serif; 
             background-color: var(--bg-color); 
             color: var(--text-main);
-            line-height: 1.5;
-            text-align: center; 
+            line-height: 1.4;
+            text-align: center;
+            overflow-x: hidden;
         }
 
-        /* Header */
+        /* Header - Reduced padding for mobile */
         header {
-            padding: 80px 20px 40px;
+            padding: 40px 15px 20px;
         }
 
         h1 { 
-            font-size: 1.8rem; 
-            letter-spacing: 6px; 
+            font-size: 1.4rem; 
+            letter-spacing: 3px; 
             font-weight: 700; 
             text-transform: uppercase; 
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* Shop Grid */
+        /* Shop Grid - Two columns on mobile */
         .shop-container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
         }
+
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(2, 1fr); /* Forces 2 columns */
+            gap: 15px; /* Tighter gap for mobile */
         }
 
         /* Card Styling */
         .product-card {
-            text-align: center; 
+            display: flex;
+            flex-direction: column;
             transition: 0.3s ease;
         }
         
         .img-container {
             width: 100%;
-            aspect-ratio: 3 / 4; 
+            aspect-ratio: 1 / 1; /* Square images look better in grids */
             overflow: hidden;
             background: #fff;
-            margin-bottom: 20px;
-            border: 4px solid #fff; /* White frame for the images */
+            margin-bottom: 12px;
+            border: 3px solid #fff;
             border-radius: var(--roundness);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
+
         .product-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: calc(var(--roundness) - 4px);
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .product-card:hover .product-img {
-            transform: scale(1.08);
+            transition: transform 0.5s ease;
         }
 
         .product-info {
             padding: 0 5px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
-        .product-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; }
-        .price-tag { font-size: 1.4rem; font-weight: 700; color: #fff; }
-        .shipping-note { display: block; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+
+        .product-title { 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.6em; /* Keeps titles aligned */
+        }
+
+        .price-tag { font-size: 1.1rem; font-weight: 700; color: #fff; }
+        
+        .shipping-note { 
+            display: block; 
+            font-size: 0.75rem; 
+            color: var(--text-muted); 
+            margin-bottom: 12px; 
+        }
 
         .buy-now {
             display: block;
             background: #ffffff;
             color: var(--bg-color);
             text-decoration: none;
-            padding: 14px;
-            text-align: center;
+            padding: 10px 5px;
             font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            border-radius: 50px; /* Pill shape for a modern look */
+            font-size: 0.8rem;
+            border-radius: 50px;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .buy-now:hover { 
-            background: #f0f0f0;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-top: auto; /* Pushes button to bottom */
         }
 
         /* Footer */
         footer {
-            padding: 80px 20px;
+            padding: 40px 20px;
             border-top: 1px solid var(--border);
-            margin-top: 60px;
+            margin-top: 40px;
         }
+
         .ig-icon-link {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #fff;
             text-decoration: none;
-            transition: transform 0.3s ease;
-            display: inline-block;
         }
-        .ig-icon-link:hover {
-            transform: scale(1.2) rotate(10deg);
+
+        .copyright { font-size: 0.7rem; color: #ffd1d1; margin-top: 15px; letter-spacing: 1px; }
+
+        /* Desktop Adjustments */
+        @media (min-width: 768px) {
+            header { padding: 60px 20px 40px; }
+            h1 { font-size: 2rem; letter-spacing: 6px; }
+            .product-grid { 
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+                gap: 30px;
+            }
+            .product-title { font-size: 1.2rem; height: auto; }
+            .price-tag { font-size: 1.4rem; }
+            .buy-now { font-size: 1rem; padding: 14px; }
+            .img-container { aspect-ratio: 3 / 4; }
         }
-        .copyright { font-size: 0.8rem; color: #ffd1d1; margin-top: 25px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -140,8 +166,8 @@
                 <div class="product-info">
                     <div class="product-title">Criminal Case Tunisia 3 Cases</div>
                     <div class="price-tag">25 DT</div>
-                    <span class="shipping-note">+ 7 DT مصاريف التوصيل</span>
-                    <a href="https://tally.so/r/wojBeO" target="_blank" class="buy-now">اشتري الآن | BUY NOW</a>
+                    <span class="shipping-note">+ 7 DT توصيل</span>
+                    <a href="https://tally.so/r/wojBeO" target="_blank" class="buy-now">BUY NOW</a>
                 </div>
             </div>
 
@@ -152,8 +178,8 @@
                 <div class="product-info">
                     <div class="product-title">Criminal Case Tunisia 6 Cases</div>
                     <div class="price-tag">35 DT</div>
-                    <span class="shipping-note">+ 7 DT مصاريف التوصيل</span>
-                    <a href="https://tally.so/r/medkpo" target="_blank" class="buy-now">اشتري الآن | BUY NOW</a>
+                    <span class="shipping-note">+ 7 DT توصيل</span>
+                    <a href="https://tally.so/r/medkpo" target="_blank" class="buy-now">BUY NOW</a>
                 </div>
             </div>
 
@@ -164,8 +190,8 @@
                 <div class="product-info">
                     <div class="product-title">UNO KOORA</div>
                     <div class="price-tag">35 DT</div>
-                    <span class="shipping-note">+ 7 DT مصاريف التوصيل</span>
-                    <a href="https://tally.so/r/yPMW58" target="_blank" class="buy-now">اشتري الآن | BUY NOW</a>
+                    <span class="shipping-note">+ 7 DT توصيل</span>
+                    <a href="https://tally.so/r/yPMW58" target="_blank" class="buy-now">BUY NOW</a>
                 </div>
             </div>
 
@@ -176,8 +202,8 @@
                 <div class="product-info">
                     <div class="product-title">EYY LEE + JASOUS</div>
                     <div class="price-tag">25 DT</div>
-                    <span class="shipping-note">+ 7 DT مصاريف التوصيل</span>
-                    <a href="#" target="_blank" class="buy-now">اشتري الآن | BUY NOW</a>
+                    <span class="shipping-note">+ 7 DT توصيل</span>
+                    <a href="#" target="_blank" class="buy-now">BUY NOW</a>
                 </div>
             </div>
 
