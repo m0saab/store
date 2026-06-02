@@ -14,11 +14,11 @@
                         cairo: ['Cairo', 'sans-serif'],
                     },
                     colors: {
-                        brand-black: '#1a1a1a',
-                        brand-red: '#C0392B', 
-                        brand-red-light: '#fce8e6',
-                        brand-bg: '#ffffff', 
-                        brand-line: '#e2e8f0'
+                        'brand-black': '#1a1a1a',
+                        'brand-red': '#C0392B', 
+                        'brand-red-light': '#fce8e6',
+                        'brand-bg': '#ffffff', 
+                        'brand-line': '#e2e8f0'
                     }
                 }
             }
@@ -168,10 +168,10 @@
                 </div>
             </div>
 
-            <!-- المنتج السادس (جديد) -->
-            <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-default">
+            <!-- المنتج الجديد: WE: Jeu de Cartes pour Couples -->
+            <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
                 <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
-                    <span class="absolute top-3 right-3 bg-amber-500 text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">⏳ قريباً</span>
+                    <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🆕 قريباً</span>
                     <img src="we.png" alt="WE: Jeu de Cartes pour Couples" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
                 </div>
                 <div class="p-5 flex flex-col flex-grow bg-white">
@@ -181,9 +181,9 @@
                             <span class="text-brand-red font-black text-xl">40 د.ت</span>
                             <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
                         </div>
-                        <button class="w-full bg-gray-400 text-white font-black py-3 px-4 rounded-lg tracking-wide text-sm flex items-center justify-center gap-2 cursor-not-allowed">
-                            <span>قريباً (Soon)</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <button class="w-full bg-gray-400 text-white font-black py-3 px-4 rounded-lg tracking-wide text-sm flex items-center justify-center gap-2 cursor-not-allowed" disabled>
+                            <span>قريباً جداً</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3"/></svg>
                         </button>
                     </div>
                 </div>
