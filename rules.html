@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل الألعاب التونسية</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --card-bg: #161616;
+            --primary-red: #e50914;
+            --hover-red: #b20710;
+            --text-white: #ffffff;
+            --text-gray: #aaaaaa;
+            --border-color: #2a2a2a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--primary-red);
+            padding-bottom: 1.5rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        header h1 span {
+            color: var(--primary-red);
+        }
+
+        /* Buy Banner Styling */
+        .buy-banner {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-buy {
+            display: inline-block;
+            background-color: var(--primary-red);
+            color: var(--text-white);
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-buy:hover {
+            background-color: var(--hover-red);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
+        }
+
+        .game-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            cursor: pointer;
+            background: linear-gradient(90deg, #1f1f1f 0%, #161616 100%);
+            user-select: none;
+        }
+
+        .game-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .game-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background-color: var(--primary-red);
+            border-radius: 2px;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--primary-red);
+            transition: transform 0.3s ease;
+        }
+
+        .game-rules {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+            padding: 0 1.5rem;
+            background-color: #0f0f0f;
+            border-top: 0 solid var(--border-color);
+        }
+
+        .game-rules.active {
+            max-height: 2500px; /* High enough to contain content */
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .game-card.open .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Rules Content Styling */
+        .rules-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .rules-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .rules-section h4 {
+            color: var(--primary-red);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 5px;
+        }
+
+        ul, ol {
+            padding-right: 1.5rem;
+            color: var(--text-gray);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--text-gray);
+        }
+
+        .highlight {
+            color: var(--text-white);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>قائمة <span>الألعاب</span> الرقمية</h1>
+        </header>
+
+        <!-- Buy Button Banner -->
+        <div class="buy-banner">
+            <a href="https://squadgames.vercel.app/" target="_blank" class="btn-buy">🛒 اشترِ ألعابك المفضلة الآن من هنا</a>
+        </div>
+
+        <div class="game-list">
+
+            <!-- GAME 1 -->
+            <div class="game-card">
+                <div class="game-header" onclick="toggleRules(this)">
+                    <div class="game-title">1 / Criminal Case Tunisia</div>
+                    <div class="toggle-icon">▼</div>
+                </div>
+                <div class="game-rules">
+                    <div class="rules-section">
+                        <h4>طبيعة اللعبة:</h4>
+                        <p>لعبة تحقيق وغموض تدور أحداثها في تونس، تحتوي على <span class="highlight">6 جرائم مختلفة بالدارجة التونسية</span>.</p>
+                    </div>
+                    <div class="rules-section">
+                        <h4>تفاصيل الجريمة:</h4>
+                        <ul>
+                            <li>كل جريمة فيها <span class="highlight">3 مشتبه بهم (Suspects)</span>.</li>
+                            <li>المطلوب منك هو قراءة الملف الشخصي (Profile) الخاص بكل مشتبه به بتمعّن.</li>
+                        </ul>
+                    </div>
+                    <div class="rules-section">
+                        <h4>طريقة الحل ووسائل المساعدة:</h4>
+                        <p>تعتمد على تحليل نوعين من الأدلة والمعلومات لحل القضية ومعرفة القاتل:</p>
+                        <ol>
+                            <li><span class="highlight">معلومات مادية (Matériel):</span> وتتمثل في الصور، الخرائط، الأدلة الجنائية، جوازات السفر، وأقوال الشهود.</li>
+                            <li><span class="highlight">معلومات رقمية (Online):</span> البحث عبر الإنترنت والشبكات الاجتماعية، وتتضمن تصفح صور وفيديوهات، تفقد حسابات ومنشورات ومحادثات افتراضية، بالإضافة إلى تفكيك وفحص هواتف الضحايا (تفريغ المكالمات والرسائل والتسجيلات الصوتية).</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAME 2 -->
+            <div class="game-card">
+                <div class="game-header" onclick="toggleRules(this)">
+                    <div class="game-title">2 / Koora Uno</div>
+                    <div class="toggle-icon">▼</div>
+                </div>
+                <div class="game-rules">
+                    <div class="rules-section">
+                        <h4>طريقة اللعب الأساسية:</h4>
+                        <ul>
+                            <li>يبدأ كل لاعب بـ <span class="highlight">7 كروت</span> موضوعة أمامه على الطاولة.</li>
+                            <li>للتخلص من الكروت، يجب عليك ذكر اسم لاعب كرة قدم يجمع بين <span class="highlight">خاصيتين (2 Features)</span> موجودتين في كرتين من كروتك (مثال: لعب في الفريق X والفريق Y، تدرب تحت قيادة مدرب معين، جنسية محددة، أرقام قياسية شخصية، ألقاب جماعية، دوريات، قارات... إلخ).</li>
+                            <li>الفائز هو أول لاعب ينجح في إنهاء وتصريف جميع كروته.</li>
+                        </ul>
+                    </div>
+                    <div class="rules-section">
+                        <h4>الكروت الخاصة (Extra Cards):</h4>
+                        <ul>
+                            <li><span class="highlight">كرت 2+:</span> يجبر اللاعب القادم على سحب كرتين إضافيين. إذا كان لديه كرت 2+ أيضاً، يتم تمريرها للاعب الذي يليه ليسحب <span class="highlight">4 كروت</span> بدلاً من كرتين (تراكمي).</li>
+                            <li><span class="highlight">كرت السويتش (Switch):</span> يقوم بعكس اتجاه اللعب وحركة الأدوار.</li>
+                            <li><span class="highlight">الكرت الأحمر (Red Card):</span> يمنحك الصلاحية لاختيار <span class="highlight">لاعبَيْ كرة قدم اثنين وحظرهما (Ban)</span>؛ بحيث يُمنع على أي شخص في الطاولة تسمية هذين اللاعبين حتى نهاية المباراة.</li>
+                        </ul>
+                    </div>
+                    <div class="rules-section">
+                        <h4>خاصية الـ VAR (الحكم المساعد):</h4>
+                        <p>كرت الـ VAR يكون موضوعاً دائماً على الطاولة. عندما يقوم أحد اللاعبين بتسمية لاعب كرة قدم ويشكك بقية اللاعبين في صحة المعلومة، يمكن لأي شخص تفعيل الـ VAR والتأكد عبر الإنترنت:</p>
+                        <ul>
+                            <li>إذا تبين أن اللاعب المُسمَّى قد تم اختياره بشكل خاطئ (المعلومة غلط): يعاقب اللاعب الذي أخطأ بسحب <span class="highlight">كرت من الـ Deck + كرت من اللاعب الذي اتهمه</span>.</li>
+                            <li>إذا تبين أن الإجابة صحيحة: تقع العقوبة المذكورة تماماً على <span class="highlight">اللاعب المُتّهِم (الذي طلب الـ VAR)</span>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAME 3 -->
+            <div class="game-card">
+                <div class="game-header" onclick="toggleRules(this)">
+                    <div class="game-title">3 / Coupez Action</div>
+                    <div class="toggle-icon">▼</div>
+                </div>
+                <div class="game-rules">
+                    <div class="rules-section">
+                        <h4>طريقة اللعب (على طريقة الشكبة):</h4>
+                        <ul>
+                            <li>يتحصل كل لاعب على <span class="highlight">3 كروت</span>، ويتم وضع <span class="highlight">5 كروت</span> مكشوفة على الطاولة في بداية الجيم.</li>
+                            <li>الكروت تحتوي على ممثلين (Actors). يمكنك أكل كروت الممثلين عبر ذكر اسم <span class="highlight">مسلسل تلفزيوني (TV Show)</span> يجمع بين هذين الممثلين معاً.</li>
+                        </ul>
+                    </div>
+                    <div class="rules-section">
+                        <h4>قوانين خاصة واعتراضات:</h4>
+                        <ul>
+                            <li><span class="highlight">قانون التدخل (Interference):</span> إذا رميت كرت وفوتت فرصة أكل كرت آخر كان بإمكانك الفوز به، يحق لبقية اللاعبين التدخل فوراً، ذكر اسم المسلسل، وأكل الكروت بدلاً منك لحسابهم.</li>
+                            <li><span class="highlight">كرت الجوكر (Joker):</span> يتيح لك أكل كرت مباشرة من الطاولة، كما يمنحك القدرة على حظر ومنع بقية اللاعبين من استخدام مسلسل تلفزيوني معين حتى نهاية الجيم.</li>
+                        </ul>
+                    </div>
+                    <div class="rules-section">
+                        <h4>نهاية اللعبة وحساب النقاط:</h4>
+                        <p>عند انتهاء الأوراق وبقاء كروت على الطاولة، فإن <span class="highlight">آخر لاعب قام بالأكل</span> يأخذ كل الكروت المتبقية. اللاعب الذي يجمع أكبر عدد من الكروت هو الفائز بالمباراة.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GAME 4 -->
+            <div class="game-card">
+                <div class="game-header" onclick="toggleRules(this)">
+                    <div class="game-title">4 / 100 Tounsi</div>
+                    <div class="toggle-icon">▼</div>
+                </div>
+                <div class="game-rules">
+                    <div class="rules-section">
+                        <h4>الهدف من اللعبة:</h4>
+                        <p>كوّن فريقك واربح أكبر عدد من الجولات عن طريق تخمين أكثر الإجابات شيوعًا التي قدّمها <span class="highlight">100 شخص</span>.</p>
+                    </div>
+                    <div class="rules-section">
+                        <h4>التحضير:</h4>
+                        <ul>
+                            <li>قسّم اللاعبين إلى <span class="highlight">فريقين أو أكثر</span>.</li>
+                            <li>امسح (<span class="highlight">Scan</span>) بطاقة اللعبة لفتح منصة الأسئلة الرقمية.</li>
+                            <li>اختر لاعبًا ليكون <span class="highlight">المقدّم</span>.</li>
+                            <li>يقوم المقدّم بقراءة السؤال وكشف الإجابات الصحيحة عند تخمينها.</li>
+                        </ul>
+                    </div>
+                    <div class="rules-section">
+                        <h4>طريقة اللعب بالتفصيل:</h4>
+                        <ul>
+                            <li>يقرأ المقدّم السؤال بصوت عالٍ للجميع.</li>
+                            <li>تتناوب الفرق على إعطاء <span class="highlight">إجابة واحدة فقط</span> في كل دور.</li>
+                            <li>إذا كانت الإجابة موجودة ضمن إجابات الـ100 شخص، يكشفها المقدّم على المنصة.</li>
+                            <li>إذا كانت الإجابة غير موجودة، يضغط المقدّم على زر <span class="highlight">❌ خطأ</span>.</li>
+                            <li>يستمر اللعب بالتناوب حتى يتم كشف جميع الإجابات الصحيحة أو يصل كل فريق إلى <span class="highlight">3 أخطاء</span>.</li>
+                        </ul>
+                    </div>
+                    <div class="rules-section">
+                        <h4>الفوز بالجولة واللعبة:</h4>
+                        <ul>
+                            <li><span class="highlight">الفوز بالجولة:</span> الفريق الذي يكشف أكبر عدد من الإجابات الصحيحة يفوز بالجولة ويحصل على <span class="highlight">نقطة واحدة</span>.</li>
+                            <li><span class="highlight">الفوز باللعبة:</span> يمكنكم لعب العدد الذي ترغبون فيه من الجولات، والفريق الذي يحقق أكبر عدد من النقاط في النهاية هو الفائز باللقاء.</li>
+                        </ul>
+                    </div>
+                    <div class="rules-section">
+                        <h4>قواعد إضافية (اختيارية):</h4>
+                        <ul>
+                            <li>يمكن تحديد وقت محدد للإجابة (<span class="highlight">30–60 ثانية</span>) لكل دور.</li>
+                            <li>لا يُسمح بتكرار إجابة تم كشفها مسبقًا على المنصة.</li>
+                            <li>في حال وجود أي اختلاف أو شك حول إجابة معينة، يكون <span class="highlight">قرار المقدّم هو النهائي</span>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleRules(headerElement) {
+            const card = headerElement.parentElement;
+            const rules = headerElement.nextElementSibling;
+            
+            // Toggle active class on rules container
+            rules.classList.toggle('active');
+            // Toggle open class on card for arrow animation
+            card.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
