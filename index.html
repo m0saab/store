@@ -41,9 +41,19 @@
     </header>
 
     <nav class="bg-transparent py-6 border-b border-brand-line">
-        <div class="container mx-auto px-4 flex justify-center items-center">
+        <div class="container mx-auto px-6 flex justify-between items-center max-w-7xl">
+            <!-- مساحة فارغة لموازنة الزر في الشاشات الكبيرة وجعل اللوجو في المنتصف تماماً -->
+            <div class="hidden md:block w-32"></div> 
+            
             <a href="/" class="transition-transform hover:scale-105 duration-300">
                 <img src="sg.png" alt="Squad Games" class="h-16 md:h-20 object-contain filter drop-shadow">
+            </a>
+
+            <a href="rules.html" class="bg-brand-black text-white hover:bg-brand-red font-bold text-sm px-4 py-2.5 rounded-lg border border-brand-line shadow-sm transition-all duration-300 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span>قواعد ألعابنا</span>
             </a>
         </div>
     </nav>
@@ -62,134 +72,200 @@
                 </p>
             </div>
         </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            
-            <!-- المنتج الأول -->
-            <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/medkpo', '_blank')">
-                <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
-                    <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🔥 الأكثر مبيعاً</span>
-                    <img src="1.png" alt="Criminal Case Tunisia - 6 Cases" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
-                </div>
-                <div class="p-5 flex flex-col flex-grow bg-white">
-                    <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">Criminal Case Tunisia - ستة قضايا</h3>
-                    <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-brand-red font-black text-xl">35 د.ت</span>
-                            <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+
+        <!-- ================= قسم ألعاب التحقيق والجريمة ================= -->
+        <section class="mb-16">
+            <h2 class="text-xl font-black text-brand-black mb-6 pb-2 border-b-2 border-brand-red inline-block">ألعاب التحقيق والقضايا (Criminal Case)</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- المنتج الأول -->
+                <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/medkpo', '_blank')">
+                    <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
+                        <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🔥 الأكثر مبيعاً</span>
+                        <img src="1.png" alt="Criminal Case Tunisia - 6 Cases" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow bg-white">
+                        <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">Criminal Case Tunisia - ستة قضايا</h3>
+                        <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <span class="text-brand-red font-black text-xl">35 د.ت</span>
+                                <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                            </div>
+                            <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
+                                <span>اطلب الآن</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
                         </div>
-                        <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- المنتج الثاني -->
-            <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/wojBeO', '_blank')">
-                <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
-                    <img src="2.png" alt="Criminal Case Tunisia - 3 Cases" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
-                </div>
-                <div class="p-5 flex flex-col flex-grow bg-white">
-                    <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">Criminal Case Tunisia - ثلاثة قضايا</h3>
-                    <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-brand-red font-black text-xl">25 د.ت</span>
-                            <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                <!-- المنتج الثاني -->
+                <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/wojBeO', '_blank')">
+                    <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
+                        <img src="2.png" alt="Criminal Case Tunisia - 3 Cases" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow bg-white">
+                        <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">Criminal Case Tunisia - ثلاثة قضايا</h3>
+                        <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <span class="text-brand-red font-black text-xl">25 د.ت</span>
+                                <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                            </div>
+                            <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
+                                <span>اطلب الآن</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
                         </div>
-                        <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- المنتج الثالث -->
-            <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/yPMW58', '_blank')">
-                <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
-                    <img src="3.png" alt="Kora Uno Football Game" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
-                </div>
-                <div class="p-5 flex flex-col flex-grow bg-white">
-                    <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">كورة أونو - لعبة كروت كرة القدم</h3>
-                    <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-brand-red font-black text-xl">35 د.ت</span>
-                            <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+            </div>
+        </section>
+
+        <!-- ================= قسم كورة أونو ================= -->
+        <section class="mb-16">
+            <h2 class="text-xl font-black text-brand-black mb-6 pb-2 border-b-2 border-brand-red inline-block">سلسلة كورة أونو (Koora Uno)</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- المنتج الثالث (كورة أونو الأصلية) -->
+                <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/yPMW58', '_blank')">
+                    <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
+                        <img src="3.png" alt="Kora Uno Football Game" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow bg-white">
+                        <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">كورة أونو - لعبة كروت كرة القدم</h3>
+                        <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <span class="text-brand-red font-black text-xl">35 د.ت</span>
+                                <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                            </div>
+                            <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
+                                <span>اطلب الآن</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
                         </div>
-                        <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- المنتج الرابع -->
-            <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/vGKGbv', '_blank')">
-                <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
-                    <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🆕 جديد</span>
-                    <img src="ca.jpg" alt="Coupez Action Game" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
-                </div>
-                <div class="p-5 flex flex-col flex-grow bg-white">
-                    <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">Coupez Action - لعبة المسلسلات التونسية</h3>
-                    <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-brand-red font-black text-xl">35 د.ت</span>
-                            <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                <!-- المنتج: Koora Uno - نسخة تونس -->
+                <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/684ekk', '_blank')">
+                    <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
+                        <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🆕 جديد</span>
+                        <img src="kooratn.png" alt="Koora Uno - نسخة تونس" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow bg-white">
+                        <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">Koora Uno - نسخة تونس</h3>
+                        <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <span class="text-brand-red font-black text-xl">30 د.ت</span>
+                                <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                            </div>
+                            <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
+                                <span>اطلب الآن</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
                         </div>
-                        <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- المنتج الخامس -->
-            <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/A7bRqB', '_blank')">
-                <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
-                    <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🆕 جديد</span>
-                    <img src="4.png" alt="100 Tunsi Party Game" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
-                </div>
-                <div class="p-5 flex flex-col flex-grow bg-white">
-                    <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">100 تونسي - لعبة الشلة وعائلة</h3>
-                    <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-brand-red font-black text-xl">35 د.ت</span>
-                            <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                <!-- المنتج الجديد المضاف: Koora UNO نسخة العالمية + النسخة التونسية -->
+                <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/2EVBrj', '_blank')">
+                    <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
+                        <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">💥 عرض خاص</span>
+                        <img src="koora2.jpg" alt="Koora UNO النسخة العالمية + النسخة التونسية" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow bg-white">
+                        <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">Koora UNO النسخة العالمية + النسخة التونسية</h3>
+                        <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
+                            <div class="flex items-baseline justify-between mb-3 flex-wrap gap-1">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="text-brand-red font-black text-xl">50 د.ت</span>
+                                    <span class="text-xs text-gray-400 line-through font-bold">65 د.ت</span>
+                                </div>
+                                <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                            </div>
+                            <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
+                                <span>اطلب الآن</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
                         </div>
-                        <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- المنتج الجديد: WE: Jeu de Cartes pour Couples -->
-            <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
-                <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
-                    <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🆕 قريباً</span>
-                    <img src="we.png" alt="WE: Jeu de Cartes pour Couples" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
-                </div>
-                <div class="p-5 flex flex-col flex-grow bg-white">
-                    <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">WE: Jeu de Cartes pour Couples</h3>
-                    <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-brand-red font-black text-xl">40 د.ت</span>
-                            <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+            </div>
+        </section>
+
+        <!-- ================= قسم بقية الألعاب والترفيه ================= -->
+        <section class="mb-16">
+            <h2 class="text-xl font-black text-brand-black mb-6 pb-2 border-b-2 border-brand-red inline-block">بقية الألعاب الترفيهية</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- المنتج الرابع -->
+                <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/vGKGbv', '_blank')">
+                    <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
+                        <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🆕 جديد</span>
+                        <img src="ca.jpg" alt="Coupez Action Game" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow bg-white">
+                        <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">Coupez Action - لعبة المسلسلات التونسية</h3>
+                        <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <span class="text-brand-red font-black text-xl">35 د.ت</span>
+                                <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                            </div>
+                            <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
+                                <span>اطلب الآن</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
                         </div>
-                        <button class="w-full bg-gray-400 text-white font-black py-3 px-4 rounded-lg tracking-wide text-sm flex items-center justify-center gap-2 cursor-not-allowed" disabled>
-                            <span>قريباً جداً</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3"/></svg>
-                        </button>
                     </div>
                 </div>
-            </div>
 
-        </div>
+                <!-- المنتج الخامس -->
+                <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer" onclick="window.open('https://tally.so/r/A7bRqB', '_blank')">
+                    <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
+                        <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🆕 جديد</span>
+                        <img src="4.png" alt="100 Tunsi Party Game" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow bg-white">
+                        <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">100 تونسي - لعبة الشلة وعائلة</h3>
+                        <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <span class="text-brand-red font-black text-xl">35 د.ت</span>
+                                <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                            </div>
+                            <button class="w-full bg-brand-black text-white font-black py-3 px-4 rounded-lg tracking-wide transition-all duration-300 group-hover:bg-brand-red text-sm flex items-center justify-center gap-2">
+                                <span>اطلب الآن</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-[-4px] transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المنتج السادس -->
+                <div class="group relative bg-white border border-brand-line rounded-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
+                    <div class="relative aspect-square w-full bg-slate-50 border-b border-brand-line overflow-hidden">
+                        <span class="absolute top-3 right-3 bg-brand-red text-white font-black text-xs px-2.5 py-1 rounded z-10 shadow-sm">🆕 قريباً</span>
+                        <img src="we.png" alt="WE: Jeu de Cartes pour Couples" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow bg-white">
+                        <h3 class="font-extrabold text-brand-black text-base mb-2 group-hover:text-brand-red transition-colors duration-200 line-clamp-2">WE: Jeu de Cartes pour Couples</h3>
+                        <div class="mt-auto pt-3 border-t border-dashed border-gray-200 flex flex-col">
+                            <div class="flex items-baseline justify-between mb-3">
+                                <span class="text-brand-red font-black text-xl">40 د.ت</span>
+                                <span class="text-xs text-brand-red font-bold bg-brand-red-light px-2 py-0.5 rounded">+ 7 د.ت توصيل</span>
+                            </div>
+                            <button class="w-full bg-gray-400 text-white font-black py-3 px-4 rounded-lg tracking-wide text-sm flex items-center justify-center gap-2 cursor-not-allowed" disabled>
+                                <span>قريباً جداً</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-gray-50 border-t border-brand-line text-brand-black mt-24 z-10 relative">
