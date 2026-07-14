@@ -72,6 +72,26 @@
         .marquee-track { animation: marquee 22s linear infinite; }
         @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+        /* hero game-library marquee (rockstar-style, infinite, no JS) */
+        .hero-lib { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+        .hero-lib-row { display: flex; gap: 14px; width: max-content; will-change: transform; }
+        .hero-lib-row img {
+            width: clamp(90px, 12vw, 150px);
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 10px;
+            opacity: .55;
+            flex: none;
+        }
+        .hero-lib-row--a { animation: heroLibLeft 38s linear infinite; margin-bottom: 14px; }
+        .hero-lib-row--b { animation: heroLibRight 34s linear infinite; }
+        @keyframes heroLibLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes heroLibRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+        .hero-lib-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(180deg, rgba(10,10,12,.55) 0%, rgba(10,10,12,.82) 55%, #0a0a0c 100%);
+        }
+
         /* always-visible, clearly tappable order button on product cards */
         .order-btn {
             transition: background-color .3s var(--ease), transform .3s var(--ease);
@@ -136,10 +156,194 @@
 
         <!-- HERO -->
         <section class="relative overflow-hidden bg-black">
-            <div class="absolute inset-0">
+            <!-- sliding game-library background, infinite loop -->
+            <div class="hero-lib" aria-hidden="true">
+                <div class="hero-lib-row hero-lib-row--a">
+                    <img src="6cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                </div>
+                <div class="hero-lib-row hero-lib-row--b">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                    <img src="kooraunotn.jpg" alt="">
+                    <img src="coupezaction.jpg" alt="">
+                    <img src="100tounsi.jpg" alt="">
+                    <img src="we.jpg" alt="">
+                    <img src="mongela.jpg" alt="">
+                    <img src="chtochreb.jpg" alt="">
+                    <img src="kooraunodouble.jpg" alt="">
+                    <img src="koorauno.jpg" alt="">
+                    <img src="8cases.jpg" alt="">
+                    <img src="3cases.jpg" alt="">
+                    <img src="6cases.jpg" alt="">
+                </div>
+            </div>
+            <div class="hero-lib-overlay"></div>
+            <div class="absolute inset-0 z-[1]">
                 <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-accent/30 blur-3xl"></div>
             </div>
-            <div class="relative container-fluid mx-auto max-w-7xl py-20 sm:py-28 md:py-36 text-center flex flex-col items-center">
+            <div class="relative z-10 container-fluid mx-auto max-w-7xl py-20 sm:py-28 md:py-36 text-center flex flex-col items-center">
                 <span class="eyebrow text-accent text-xs font-bold tracked mb-5 uppercase">Squad Games TN</span>
                 <h1 class="text-white font-bold leading-[1.15] mb-6" style="font-size:clamp(1.9rem,6.5vw,4.5rem);">
                     ألعاب تونسية بش تلم العايلة والشلة
