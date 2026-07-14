@@ -72,9 +72,12 @@
         .marquee-track { animation: marquee 22s linear infinite; }
         @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* hero game-library marquee (rockstar-style, infinite, no JS) */
+        /* hero game-library — scroll-driven, not time-based.
+           Position is derived straight from the page's scroll offset, so there's
+           no infinite loop to break, no speed to tune, and nothing animates
+           (i.e. costs zero CPU/GPU) while the page is sitting still. */
         .hero-lib { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
-        .hero-lib-row { display: flex; gap: 14px; width: max-content; will-change: transform; }
+        .hero-lib-row { display: flex; gap: 14px; width: max-content; }
         .hero-lib-row img {
             width: clamp(90px, 12vw, 150px);
             aspect-ratio: 4 / 5;
@@ -83,10 +86,30 @@
             opacity: .55;
             flex: none;
         }
-        .hero-lib-row--a { animation: heroLibLeft 38s linear infinite; margin-bottom: 14px; }
-        .hero-lib-row--b { animation: heroLibRight 34s linear infinite; }
-        @keyframes heroLibLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .hero-lib-row--a { margin-bottom: 14px; }
+        @keyframes heroLibLeft  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes heroLibRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+        /* Progressive enhancement: only browsers that support scroll-driven
+           animations get the sliding effect. Everyone else just sees the
+           static image grid — no broken fallback, nothing to patch. */
+        @supports (animation-timeline: scroll()) {
+            .hero-lib-row--a {
+                animation-name: heroLibLeft;
+                animation-duration: 1s;      /* arbitrary: scroll position drives progress, not time */
+                animation-timing-function: linear;
+                animation-fill-mode: both;
+                animation-timeline: scroll(root block);
+            }
+            .hero-lib-row--b {
+                animation-name: heroLibRight;
+                animation-duration: 1s;
+                animation-timing-function: linear;
+                animation-fill-mode: both;
+                animation-timeline: scroll(root block);
+            }
+        }
+
         .hero-lib-overlay {
             position: absolute; inset: 0; z-index: 1;
             background: linear-gradient(180deg, rgba(10,10,12,.55) 0%, rgba(10,10,12,.82) 55%, #0a0a0c 100%);
@@ -156,7 +179,7 @@
 
         <!-- HERO -->
         <section class="relative overflow-hidden bg-black">
-            <!-- sliding game-library background, infinite loop -->
+            <!-- game-library background: slides based on page scroll position (not a timed loop) -->
             <div class="hero-lib" aria-hidden="true">
                 <div class="hero-lib-row hero-lib-row--a">
                     <img src="6cases.jpg" alt="">
@@ -203,96 +226,8 @@
                     <img src="100tounsi.jpg" alt="">
                     <img src="coupezaction.jpg" alt="">
                     <img src="kooraunotn.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
                 </div>
                 <div class="hero-lib-row hero-lib-row--b">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
                     <img src="kooraunotn.jpg" alt="">
                     <img src="coupezaction.jpg" alt="">
                     <img src="100tounsi.jpg" alt="">
