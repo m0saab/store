@@ -18,11 +18,12 @@
                     colors: {
                         accent: '#f5457f',
                         'accent-dark': '#c62c5e',
-                        'accent-tint': '#fff0f5',
-                        ink: '#17181a',
-                        gray: '#8a8d93',
-                        fog: '#fafbfb',
-                        line: '#eceef0',
+                        'accent-tint': '#2a1420',
+                        base: '#0a0a0c',
+                        ink: '#f2f3f5',
+                        gray: '#9a9da5',
+                        fog: '#18191c',
+                        line: '#2a2b2f',
                     }
                 }
             }
@@ -32,8 +33,8 @@
         :root{ --ease: cubic-bezier(.22,1,.36,1); }
         html { scroll-behavior: smooth; }
         body {
-            background-color: #ffffff;
-            color: #17181a;
+            background-color: #0a0a0c;
+            color: #f2f3f5;
             -webkit-font-smoothing: antialiased;
         }
         .container-fluid { padding-left: clamp(1.25rem, 4vw, 3.5rem); padding-right: clamp(1.25rem, 4vw, 3.5rem); }
@@ -56,7 +57,7 @@
 
         /* flat-view product card: opacity-based hover, no lift, no shadow */
         .flat-card { transition: border-color .35s var(--ease); }
-        .flat-card:hover { border-color: #17181a; }
+        .flat-card:hover { border-color: #f5457f; }
         .flat-img { transition: opacity .5s var(--ease), transform 1s var(--ease); }
         .flat-card:hover .flat-img { opacity: .55; transform: scale(1.02); }
         .link-under {
@@ -80,7 +81,12 @@
         .flat-arrow { transition: transform .35s var(--ease); }
         .flat-card:hover .flat-arrow { transform: translateX(-4px); }
 
-        .lang-btn.active { color: #17181a; font-weight: 700; }
+        .lang-btn.active { color: #f2f3f5; font-weight: 700; }
+
+        /* netflix-style horizontal product carousel */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .rail-card { scroll-snap-stop: always; }
 
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; }
@@ -90,7 +96,7 @@
 <body class="font-plex flex flex-col min-h-screen antialiased selection:bg-accent selection:text-white">
 
     <!-- ANNOUNCEMENT BAR -->
-    <div class="bg-ink text-white overflow-hidden py-2.5 text-[11px] tracked">
+    <div class="bg-black text-white overflow-hidden py-2.5 text-[11px] tracked">
         <div class="marquee-track flex whitespace-nowrap">
             <span class="px-8">✨ توصيل سريع لكامل تراب الجمهورية التونسية خلال 24/48 ساعة فقط</span>
             <span class="px-8">✨ SQUADGAMES — ألعاب أصيلة صنعت للشلة</span>
@@ -100,7 +106,7 @@
     </div>
 
     <!-- STICKY NAV -->
-    <nav class="nav-enter bg-white/95 backdrop-blur-md border-b border-line sticky top-0 z-50">
+    <nav class="nav-enter bg-base/90 backdrop-blur-md border-b border-line sticky top-0 z-50">
         <div class="container-fluid mx-auto max-w-7xl relative flex items-center justify-between py-5">
             <a href="rules.html" class="hidden md:flex items-center gap-2 text-xs font-semibold tracked-sm text-ink/80 hover:text-accent transition-colors duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -129,7 +135,7 @@
     <main class="flex-grow z-10">
 
         <!-- HERO -->
-        <section class="relative overflow-hidden bg-ink">
+        <section class="relative overflow-hidden bg-black">
             <div class="absolute inset-0">
                 <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-accent/30 blur-3xl"></div>
             </div>
@@ -141,7 +147,7 @@
                 <p class="text-white/70 max-w-xl mx-auto mb-10 text-sm md:text-base leading-relaxed">
                     قضايا بوليسية، كروت كرة القدم، وألعاب سهرة — كل شيء مصمّم ومطبوع في تونس، ليجمعكم حول الطاولة.
                 </p>
-                <a href="#shop" class="group bg-accent hover:bg-white text-white hover:text-ink font-bold text-sm tracked-sm px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-3">
+                <a href="#shop" class="group bg-accent hover:bg-white text-white hover:text-black font-bold text-sm tracked-sm px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-3">
                     <span>اكتشف المجموعة</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
                 </a>
@@ -156,10 +162,10 @@
                 <span class="eyebrow text-accent text-xs font-bold tracked">01</span>
                 <h2 class="font-bold text-ink" style="font-size:clamp(1.2rem,2vw,1.6rem);">ألعاب التحقيق والقضايا <span class="text-gray font-normal">(Criminal Case)</span></h2>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+            <div class="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0">
 
                 <!-- المنتج الأول -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/medkpo', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/medkpo', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
                         <span class="absolute top-3 right-3 bg-accent text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🔥 الأكثر مبيعاً</span>
                         <img src="6cases.jpg" alt="Criminal Case Tunisia - 6 Cases" class="flat-img w-full h-full object-cover object-center">
@@ -178,7 +184,7 @@
                 </div>
 
                 <!-- المنتج الثاني -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/wojBeO', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/wojBeO', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
                         <img src="3cases.jpg" alt="Criminal Case Tunisia - 3 Cases" class="flat-img w-full h-full object-cover object-center">
                     </div>
@@ -196,9 +202,9 @@
                 </div>
 
                 <!-- المنتج الجديد (الثالث) -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/WOQ4Mk', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/WOQ4Mk', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-ink text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
+                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
                         <img src="8cases.jpg" alt="Criminal Case Tunisia - 8 Cases" class="flat-img w-full h-full object-cover object-center">
                     </div>
                     <div class="pt-4 flex flex-col flex-grow">
@@ -223,10 +229,10 @@
                 <span class="eyebrow text-accent text-xs font-bold tracked">02</span>
                 <h2 class="font-bold text-ink" style="font-size:clamp(1.2rem,2vw,1.6rem);">سلسلة كورة أونو <span class="text-gray font-normal">(Koora Uno)</span></h2>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+            <div class="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0">
 
                 <!-- المنتج الثالث (كورة أونو الأصلية) -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/yPMW58', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/yPMW58', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
                         <img src="koorauno.jpg" alt="Kora Uno Football Game" class="flat-img w-full h-full object-cover object-center">
                     </div>
@@ -244,9 +250,9 @@
                 </div>
 
                 <!-- المنتج: Koora Uno - نسخة تونس -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/684ekk', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/684ekk', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-ink text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
+                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
                         <img src="kooraunotn.jpg" alt="Koora Uno - نسخة تونس" class="flat-img w-full h-full object-cover object-center">
                     </div>
                     <div class="pt-4 flex flex-col flex-grow">
@@ -263,7 +269,7 @@
                 </div>
 
                 <!-- المنتج: Koora UNO نسخة العالمية + النسخة التونسية -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/2EVBrj', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/2EVBrj', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
                         <span class="absolute top-3 right-3 bg-accent text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">💥 عرض خاص</span>
                         <img src="kooraunodouble.jpg" alt="Koora UNO النسخة العالمية + النسخة التونسية" class="flat-img w-full h-full object-cover object-center">
@@ -293,12 +299,12 @@
                 <span class="eyebrow text-accent text-xs font-bold tracked">03</span>
                 <h2 class="font-bold text-ink" style="font-size:clamp(1.2rem,2vw,1.6rem);">بقية الألعاب الترفيهية</h2>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+            <div class="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0">
 
                 <!-- المنتج الرابع -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/vGKGbv', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/vGKGbv', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-ink text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
+                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
                         <img src="coupezaction.jpg" alt="Coupez Action Game" class="flat-img w-full h-full object-cover object-center">
                     </div>
                     <div class="pt-4 flex flex-col flex-grow">
@@ -315,9 +321,9 @@
                 </div>
 
                 <!-- المنتج: لعبة فك القنبلة - المنڨالة -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/Bzl7P4', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/Bzl7P4', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-ink text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
+                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
                         <img src="mongela.jpg" alt="لعبة فك القنبلة - المنڨالة" class="flat-img w-full h-full object-cover object-center">
                     </div>
                     <div class="pt-4 flex flex-col flex-grow">
@@ -334,9 +340,9 @@
                 </div>
 
                 <!-- المنتج: شتشرب - CHTOCHREB -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/REPLACE_ME', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/REPLACE_ME', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-ink text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
+                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
                         <img src="chtochreb.jpg" alt="شتشرب - Chtochreb" class="flat-img w-full h-full object-cover object-center">
                     </div>
                     <div class="pt-4 flex flex-col flex-grow">
@@ -353,9 +359,9 @@
                 </div>
 
                 <!-- المنتج الخامس -->
-                <div class="flat-card group relative flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/A7bRqB', '_blank')">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/A7bRqB', '_blank')">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-ink text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
+                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
                         <img src="100tounsi.jpg" alt="100 Tunsi Party Game" class="flat-img w-full h-full object-cover object-center">
                     </div>
                     <div class="pt-4 flex flex-col flex-grow">
@@ -372,7 +378,7 @@
                 </div>
 
                 <!-- المنتج السادس -->
-                <div class="flat-card group relative flex flex-col justify-between opacity-60">
+                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between opacity-60">
                     <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
                         <span class="absolute top-3 right-3 bg-gray text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 قريباً</span>
                         <img src="we.jpg" alt="WE: Jeu de Cartes pour Couples" class="flat-img w-full h-full object-cover object-center">
@@ -426,10 +432,10 @@
                 <div class="flex flex-col items-center md:items-start gap-4">
                     <h3 class="eyebrow font-bold text-xs tracked text-gray uppercase mb-1">تابعنا</h3>
                     <div class="flex gap-3">
-                        <a href="https://www.instagram.com/squad.games.tn/" target="_blank" class="w-9 h-9 flex items-center justify-center bg-white border border-line rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
+                        <a href="https://www.instagram.com/squad.games.tn/" target="_blank" class="w-9 h-9 flex items-center justify-center bg-fog text-ink border border-line rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                         </a>
-                        <a href="https://wa.me/21651640632" target="_blank" class="w-9 h-9 flex items-center justify-center bg-white border border-line rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
+                        <a href="https://wa.me/21651640632" target="_blank" class="w-9 h-9 flex items-center justify-center bg-fog text-ink border border-line rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
                             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.438-9.89 9.886-.001 2.15.613 3.941 1.819 5.41l-1.026 3.75 3.866-1.015zm11.389-7.115c-.301-.15-1.781-.879-2.056-.979-.275-.1-.475-.15-.675.15-.2.3-.775.979-.95 1.179-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.488-.894-.797-1.497-1.783-1.672-2.083-.175-.3-.019-.462.13-.611.135-.133.3-.35.45-.525.15-.175.2-.3.3-.5s.05-.375-.025-.525-.675-1.625-.925-2.225c-.244-.589-.491-.51-.675-.519-.174-.01-.374-.012-.574-.012s-.525.075-.8.375c-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.115 3.23 5.125 4.535.715.311 1.275.496 1.71.635.717.227 1.369.195 1.885.118.575-.085 1.781-.729 2.031-1.433.25-.704.25-1.306.175-1.433-.075-.127-.275-.202-.575-.352z"/></svg>
                         </a>
                     </div>
