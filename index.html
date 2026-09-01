@@ -11,19 +11,10 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        plex: ['IBM Plex Sans Arabic', 'sans-serif'],
-                        pop: ['Poppins', 'sans-serif'],
-                    },
+                    fontFamily: { plex: ['IBM Plex Sans Arabic', 'sans-serif'], pop: ['Poppins', 'sans-serif'] },
                     colors: {
-                        accent: '#f5457f',
-                        'accent-dark': '#c62c5e',
-                        'accent-tint': '#2a1420',
-                        base: '#0a0a0c',
-                        ink: '#f2f3f5',
-                        gray: '#9a9da5',
-                        fog: '#18191c',
-                        line: '#2a2b2f',
+                        accent: '#f5457f', 'accent-dark': '#c62c5e', 'accent-tint': '#2a1420',
+                        base: '#0a0a0c', ink: '#f2f3f5', gray: '#9a9da5', fog: '#18191c', line: '#2a2b2f',
                     }
                 }
             }
@@ -32,30 +23,19 @@
     <style>
         :root{ --ease: cubic-bezier(.22,1,.36,1); }
         html { scroll-behavior: smooth; }
-        body {
-            background-color: #0a0a0c;
-            color: #f2f3f5;
-            -webkit-font-smoothing: antialiased;
-        }
+        body { background-color: #0a0a0c; color: #f2f3f5; -webkit-font-smoothing: antialiased; }
         .container-fluid { padding-left: clamp(1.25rem, 4vw, 3.5rem); padding-right: clamp(1.25rem, 4vw, 3.5rem); }
         .section-pad { padding-top: clamp(2.5rem, 6vw, 5rem); padding-bottom: clamp(2.5rem, 6vw, 5rem); }
-
         .eyebrow { letter-spacing: .18em; }
         .tracked { letter-spacing: .1em; }
         .tracked-sm { letter-spacing: .06em; }
 
-        /* header entrance */
-        @keyframes dropIn {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+        @keyframes dropIn { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .nav-enter { animation: dropIn .7s var(--ease) both; }
 
-        /* fade-up reveal on scroll */
         .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
         .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-        /* flat-view product card: opacity-based hover, no lift, no shadow */
         .flat-card { transition: border-color .35s var(--ease); }
         .flat-card:hover { border-color: #f5457f; }
         .flat-img { transition: opacity .5s var(--ease), transform 1s var(--ease); }
@@ -79,12 +59,8 @@
         .hero-lib { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
         .hero-lib-row { display: flex; gap: 14px; width: max-content; }
         .hero-lib-row img {
-            width: clamp(90px, 12vw, 150px);
-            aspect-ratio: 4 / 5;
-            object-fit: cover;
-            border-radius: 10px;
-            opacity: .55;
-            flex: none;
+            width: clamp(90px, 12vw, 150px); aspect-ratio: 4 / 5; object-fit: cover;
+            border-radius: 10px; opacity: .55; flex: none;
         }
         .hero-lib-row--a { margin-bottom: 14px; }
         @keyframes heroLibLeft  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -94,20 +70,8 @@
            animations get the sliding effect. Everyone else just sees the
            static image grid — no broken fallback, nothing to patch. */
         @supports (animation-timeline: scroll()) {
-            .hero-lib-row--a {
-                animation-name: heroLibLeft;
-                animation-duration: 1s;      /* arbitrary: scroll position drives progress, not time */
-                animation-timing-function: linear;
-                animation-fill-mode: both;
-                animation-timeline: scroll(root block);
-            }
-            .hero-lib-row--b {
-                animation-name: heroLibRight;
-                animation-duration: 1s;
-                animation-timing-function: linear;
-                animation-fill-mode: both;
-                animation-timeline: scroll(root block);
-            }
+            .hero-lib-row--a { animation: heroLibLeft 1s linear both; animation-timeline: scroll(root block); }
+            .hero-lib-row--b { animation: heroLibRight 1s linear both; animation-timeline: scroll(root block); }
         }
 
         .hero-lib-overlay {
@@ -115,10 +79,7 @@
             background: linear-gradient(180deg, rgba(10,10,12,.55) 0%, rgba(10,10,12,.82) 55%, #0a0a0c 100%);
         }
 
-        /* always-visible, clearly tappable order button on product cards */
-        .order-btn {
-            transition: background-color .3s var(--ease), transform .3s var(--ease);
-        }
+        .order-btn { transition: background-color .3s var(--ease), transform .3s var(--ease); }
         .order-btn:active { transform: scale(.96); }
         .flat-card:hover .order-btn { background-color: #c62c5e; }
         .flat-arrow { transition: transform .35s var(--ease); }
@@ -126,14 +87,11 @@
 
         .lang-btn.active { color: #f2f3f5; font-weight: 700; }
 
-        /* netflix-style horizontal product carousel */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
         .rail-card { scroll-snap-stop: always; }
 
-        @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; transition: none !important; }
-        }
+        @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
     </style>
 
     <!-- Meta Pixel Code -->
@@ -158,12 +116,7 @@
 
     <!-- ANNOUNCEMENT BAR -->
     <div class="bg-black text-white overflow-hidden py-2.5 text-[11px] tracked">
-        <div class="marquee-track flex whitespace-nowrap">
-            <span class="px-8">✨ توصيل سريع لكامل تراب الجمهورية التونسية خلال 24/48 ساعة فقط</span>
-            <span class="px-8">✨ SQUADGAMES — ألعاب أصيلة صنعت للشلة</span>
-            <span class="px-8">✨ توصيل سريع لكامل تراب الجمهورية التونسية خلال 24/48 ساعة فقط</span>
-            <span class="px-8">✨ SQUADGAMES — ألعاب أصيلة صنعت للشلة</span>
-        </div>
+        <div class="marquee-track flex whitespace-nowrap" id="marquee"></div>
     </div>
 
     <!-- STICKY NAV -->
@@ -197,100 +150,10 @@
 
         <!-- HERO -->
         <section class="relative overflow-hidden bg-black">
-            <!-- game-library background: slides based on page scroll position (not a timed loop) -->
+            <!-- game-library background: slides based on page scroll position (not a timed loop), filled by script -->
             <div class="hero-lib" aria-hidden="true">
-                <div class="hero-lib-row hero-lib-row--a">
-                    <img src="6cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                </div>
-                <div class="hero-lib-row hero-lib-row--b">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                    <img src="kooraunotn.jpg" alt="">
-                    <img src="coupezaction.jpg" alt="">
-                    <img src="100tounsi.jpg" alt="">
-                    <img src="we.jpg" alt="">
-                    <img src="mongela.jpg" alt="">
-                    <img src="chtochreb.jpg" alt="">
-                    <img src="kooraunodouble.jpg" alt="">
-                    <img src="koorauno.jpg" alt="">
-                    <img src="8cases.jpg" alt="">
-                    <img src="3cases.jpg" alt="">
-                    <img src="6cases.jpg" alt="">
-                </div>
+                <div class="hero-lib-row hero-lib-row--a" id="hero-row-a"></div>
+                <div class="hero-lib-row hero-lib-row--b" id="hero-row-b"></div>
             </div>
             <div class="hero-lib-overlay"></div>
             <div class="absolute inset-0 z-[1]">
@@ -321,65 +184,7 @@
             </div>
             <div class="rail-outer relative">
                 <button type="button" class="rail-btn rail-prev absolute top-1/2 -translate-y-1/2 right-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white opacity-0 pointer-events-none transition-opacity duration-300" aria-label="السابق"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></button>
-                <div class="rail-track flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0">
-
-                <!-- المنتج الأول -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/medkpo', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-accent text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🔥 الأكثر مبيعاً</span>
-                        <img src="6cases.jpg" alt="Criminal Case Tunisia - 6 Cases" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">Criminal Case Tunisia - ستة قضايا</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">35 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- المنتج الثاني -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/wojBeO', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <img src="3cases.jpg" alt="Criminal Case Tunisia - 3 Cases" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">Criminal Case Tunisia - ثلاثة قضايا</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">25 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- المنتج الجديد (الثالث) -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/WOQ4Mk', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
-                        <img src="8cases.jpg" alt="Criminal Case Tunisia - 8 Cases" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">Criminal Case Tunisia - ثمانية قضايا</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">40 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
+                <div class="rail-track flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0" id="rail-criminal"></div>
                 <button type="button" class="rail-btn rail-next absolute top-1/2 -translate-y-1/2 left-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white transition-opacity duration-300" aria-label="التالي"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg></button>
             </div>
         </section>
@@ -392,68 +197,7 @@
             </div>
             <div class="rail-outer relative">
                 <button type="button" class="rail-btn rail-prev absolute top-1/2 -translate-y-1/2 right-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white opacity-0 pointer-events-none transition-opacity duration-300" aria-label="السابق"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></button>
-                <div class="rail-track flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0">
-
-                <!-- المنتج الثالث (كورة أونو الأصلية) -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/yPMW58', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <img src="koorauno.jpg" alt="Kora Uno Football Game" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">كورة أونو - لعبة كروت كرة القدم</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">35 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- المنتج: Koora Uno - نسخة تونس -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/684ekk', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
-                        <img src="kooraunotn.jpg" alt="Koora Uno - نسخة تونس" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">Koora Uno - نسخة تونس</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">30 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- المنتج: Koora UNO نسخة العالمية + النسخة التونسية -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/2EVBrj', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-accent text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">💥 عرض خاص</span>
-                        <img src="kooraunodouble.jpg" alt="Koora UNO النسخة العالمية + النسخة التونسية" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">Koora UNO النسخة العالمية + النسخة التونسية</h3>
-                        <div class="flex items-baseline justify-between mb-3 flex-wrap gap-1">
-                            <div class="flex items-baseline gap-2">
-                                <span class="text-ink font-pop font-bold text-lg">50 د.ت</span>
-                                <span class="text-xs text-gray line-through font-medium">65 د.ت</span>
-                            </div>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
+                <div class="rail-track flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0" id="rail-koora"></div>
                 <button type="button" class="rail-btn rail-next absolute top-1/2 -translate-y-1/2 left-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white transition-opacity duration-300" aria-label="التالي"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg></button>
             </div>
         </section>
@@ -466,103 +210,7 @@
             </div>
             <div class="rail-outer relative">
                 <button type="button" class="rail-btn rail-prev absolute top-1/2 -translate-y-1/2 right-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white opacity-0 pointer-events-none transition-opacity duration-300" aria-label="السابق"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></button>
-                <div class="rail-track flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0">
-
-                <!-- المنتج الرابع -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/vGKGbv', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
-                        <img src="coupezaction.jpg" alt="Coupez Action Game" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">Coupez Action - لعبة المسلسلات التونسية</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">35 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- المنتج: لعبة فك القنبلة - المنڨالة -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/Bzl7P4', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
-                        <img src="mongela.jpg" alt="لعبة فك القنبلة - المنڨالة" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">لعبة فك القنبلة - المنڨالة</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">35 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- المنتج: شتشرب - CHTOCHREB -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/REPLACE_ME', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
-                        <img src="chtochreb.jpg" alt="شتشرب - Chtochreb" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">شتشرب - Chtochreb</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">35 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- المنتج الخامس -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('https://tally.so/r/A7bRqB', '_blank')">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-black text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 جديد</span>
-                        <img src="100tounsi.jpg" alt="100 Tunsi Party Game" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">100 تونسي - لعبة الشلة وعائلة</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">35 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
-                            <span>اطلب الآن</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- المنتج السادس -->
-                <div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between opacity-60">
-                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
-                        <span class="absolute top-3 right-3 bg-gray text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">🆕 قريباً</span>
-                        <img src="we.jpg" alt="WE: Jeu de Cartes pour Couples" class="flat-img w-full h-full object-cover object-center">
-                    </div>
-                    <div class="pt-4 flex flex-col flex-grow">
-                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">WE: Jeu de Cartes pour Couples</h3>
-                        <div class="flex items-baseline justify-between mb-3">
-                            <span class="text-ink font-pop font-bold text-lg">40 د.ت</span>
-                            <span class="text-[11px] text-gray">+ 7 د.ت توصيل</span>
-                        </div>
-                        <button class="w-full bg-gray/30 text-gray font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2 cursor-not-allowed" disabled>
-                            <span>قريباً جداً</span>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
+                <div class="rail-track flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0" id="rail-other"></div>
                 <button type="button" class="rail-btn rail-next absolute top-1/2 -translate-y-1/2 left-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white transition-opacity duration-300" aria-label="التالي"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg></button>
             </div>
         </section>
@@ -624,12 +272,104 @@
     </footer>
 
     <script>
+        // ---------- data ----------
+        const ARROW_SVG = '<svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>';
+        const DELIVERY = '+ 7 د.ت توصيل';
+
+        const badge = (text, cls) => text ? `<span class="absolute top-3 right-3 ${cls} text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">${text}</span>` : '';
+
+        function cardHTML(p) {
+            if (p.disabled) {
+                return `<div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between opacity-60">
+                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
+                        ${badge(p.badge, 'bg-gray')}
+                        <img src="${p.img}" alt="${p.title}" class="flat-img w-full h-full object-cover object-center">
+                    </div>
+                    <div class="pt-4 flex flex-col flex-grow">
+                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">${p.title}</h3>
+                        <div class="flex items-baseline justify-between mb-3">
+                            <span class="text-ink font-pop font-bold text-lg">${p.price} د.ت</span>
+                            <span class="text-[11px] text-gray">${DELIVERY}</span>
+                        </div>
+                        <button class="w-full bg-gray/30 text-gray font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2 cursor-not-allowed" disabled>
+                            <span>قريباً جداً</span>
+                        </button>
+                    </div>
+                </div>`;
+            }
+
+            const priceBlock = p.oldPrice
+                ? `<div class="flex items-baseline justify-between mb-3 flex-wrap gap-1">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-ink font-pop font-bold text-lg">${p.price} د.ت</span>
+                            <span class="text-xs text-gray line-through font-medium">${p.oldPrice} د.ت</span>
+                        </div>
+                        <span class="text-[11px] text-gray">${DELIVERY}</span>
+                   </div>`
+                : `<div class="flex items-baseline justify-between mb-3">
+                        <span class="text-ink font-pop font-bold text-lg">${p.price} د.ت</span>
+                        <span class="text-[11px] text-gray">${DELIVERY}</span>
+                   </div>`;
+
+            return `<div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('${p.url}', '_blank')">
+                <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
+                    ${badge(p.badge, p.badgeClass || 'bg-black')}
+                    <img src="${p.img}" alt="${p.title}" class="flat-img w-full h-full object-cover object-center">
+                </div>
+                <div class="pt-4 flex flex-col flex-grow">
+                    <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">${p.title}</h3>
+                    ${priceBlock}
+                    <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
+                        <span>اطلب الآن</span>${ARROW_SVG}
+                    </button>
+                </div>
+            </div>`;
+        }
+
+        const PRODUCTS = {
+            'rail-criminal': [
+                { img: '6cases.jpg', badge: '🔥 الأكثر مبيعاً', badgeClass: 'bg-accent', title: 'Criminal Case Tunisia - ستة قضايا', price: 35, url: 'https://tally.so/r/medkpo' },
+                { img: '3cases.jpg', title: 'Criminal Case Tunisia - ثلاثة قضايا', price: 25, url: 'https://tally.so/r/wojBeO' },
+                { img: '8cases.jpg', badge: '🆕 جديد', title: 'Criminal Case Tunisia - ثمانية قضايا', price: 40, url: 'https://tally.so/r/WOQ4Mk' },
+            ],
+            'rail-koora': [
+                { img: 'koorauno.jpg', title: 'كورة أونو - لعبة كروت كرة القدم', price: 35, url: 'https://tally.so/r/yPMW58' },
+                { img: 'kooraunotn.jpg', badge: '🆕 جديد', title: 'Koora Uno - نسخة تونس', price: 30, url: 'https://tally.so/r/684ekk' },
+                { img: 'kooraunodouble.jpg', badge: '💥 عرض خاص', badgeClass: 'bg-accent', title: 'Koora UNO النسخة العالمية + النسخة التونسية', price: 50, oldPrice: 65, url: 'https://tally.so/r/2EVBrj' },
+            ],
+            'rail-other': [
+                { img: 'coupezaction.jpg', badge: '🆕 جديد', title: 'Coupez Action - لعبة المسلسلات التونسية', price: 35, url: 'https://tally.so/r/vGKGbv' },
+                { img: 'mongela.jpg', badge: '🆕 جديد', title: 'لعبة فك القنبلة - المنڨالة', price: 35, url: 'https://tally.so/r/Bzl7P4' },
+                { img: 'chtochreb.jpg', badge: '🆕 جديد', title: 'شتشرب - Chtochreb', price: 35, url: 'https://tally.so/r/REPLACE_ME' },
+                { img: '100tounsi.jpg', badge: '🆕 جديد', title: '100 تونسي - لعبة الشلة وعائلة', price: 35, url: 'https://tally.so/r/A7bRqB' },
+                { img: 'we.jpg', badge: '🆕 قريباً', title: 'WE: Jeu de Cartes pour Couples', price: 40, disabled: true },
+            ],
+        };
+
+        Object.entries(PRODUCTS).forEach(([railId, list]) => {
+            document.getElementById(railId).innerHTML = list.map(cardHTML).join('');
+        });
+
+        // announcement marquee (duplicated once for a seamless -50% loop)
+        const marqueeItems = [
+            '✨ توصيل سريع لكامل تراب الجمهورية التونسية خلال 24/48 ساعة فقط',
+            '✨ SQUADGAMES — ألعاب أصيلة صنعت للشلة',
+        ];
+        document.getElementById('marquee').innerHTML = marqueeItems.concat(marqueeItems)
+            .map(t => `<span class="px-8">${t}</span>`).join('');
+
+        // hero background library: two rows built from one image list, scroll-animated in opposite directions
+        const HERO_IMAGES = ['6cases.jpg','3cases.jpg','8cases.jpg','koorauno.jpg','kooraunodouble.jpg','chtochreb.jpg','mongela.jpg','we.jpg','100tounsi.jpg','coupezaction.jpg','kooraunotn.jpg'];
+        const REPEATS = 4; // enough copies so the strip never runs out while scrolling
+        const rowHTML = imgs => Array(REPEATS).fill(imgs).flat().map(src => `<img src="${src}" alt="">`).join('');
+        document.getElementById('hero-row-a').innerHTML = rowHTML(HERO_IMAGES);
+        document.getElementById('hero-row-b').innerHTML = rowHTML([...HERO_IMAGES].reverse());
+
         // scroll reveal
-        const revealEls = document.querySelectorAll('.reveal');
         const io = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
         }, { threshold: 0.12 });
-        revealEls.forEach(el => io.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
         // netflix-style rail arrow controls
         document.querySelectorAll('.rail-outer').forEach((wrap) => {
