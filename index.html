@@ -339,10 +339,8 @@
             ],
             'rail-other': [
                 { img: 'coupezaction.jpg', badge: '🆕 جديد', title: 'Coupez Action - لعبة المسلسلات التونسية', price: 35, url: 'https://tally.so/r/vGKGbv' },
-                { img: 'mongela.jpg', badge: '🆕 جديد', title: 'لعبة فك القنبلة - المنڨالة', price: 35, url: 'https://tally.so/r/Bzl7P4' },
-                { img: 'chtochreb.jpg', badge: '🆕 جديد', title: 'شتشرب - Chtochreb', price: 35, url: 'https://tally.so/r/REPLACE_ME' },
                 { img: '100tounsi.jpg', badge: '🆕 جديد', title: '100 تونسي - لعبة الشلة وعائلة', price: 35, url: 'https://tally.so/r/A7bRqB' },
-                { img: 'we.jpg', badge: '🆕 قريباً', title: 'WE: Jeu de Cartes pour Couples', price: 40, disabled: true },
+                { img: 'loupgarou.jpg', badge: '🆕 جديد', title: 'الذيوبة - Loup Garou', price: 35, url: 'https://tally.so/r/REPLACE_ME' },
             ],
         };
 
@@ -359,7 +357,7 @@
             .map(t => `<span class="px-8">${t}</span>`).join('');
 
         // hero background library: two rows built from one image list, scroll-animated in opposite directions
-        const HERO_IMAGES = ['6cases.jpg','3cases.jpg','8cases.jpg','koorauno.jpg','kooraunodouble.jpg','chtochreb.jpg','mongela.jpg','we.jpg','100tounsi.jpg','coupezaction.jpg','kooraunotn.jpg'];
+        const HERO_IMAGES = ['6cases.jpg','3cases.jpg','8cases.jpg','koorauno.jpg','kooraunodouble.jpg','loupgarou.jpg','100tounsi.jpg','coupezaction.jpg','kooraunotn.jpg'];
         const REPEATS = 4; // enough copies so the strip never runs out while scrolling
         const rowHTML = imgs => Array(REPEATS).fill(imgs).flat().map(src => `<img src="${src}" alt="">`).join('');
         document.getElementById('hero-row-a').innerHTML = rowHTML(HERO_IMAGES);
