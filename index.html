@@ -1,486 +1,407 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SquadGames 🇹🇳 - ألعاب للشلة</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --base:#07070a; --ink:#f4f5f8; --gray:#9a9da8; --line:rgba(255,255,255,.12);
-  --pink:#ff3d7f; --pink-dk:#c6205d; --violet:#7c5cff; --amber:#ffb648;
-  --ease: cubic-bezier(.22,1,.36,1);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
-body{margin:0; background:var(--base); color:var(--ink); font-family:'IBM Plex Sans Arabic',sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden;}
-.pop{font-family:'Poppins',sans-serif;}
-.wrap{padding-left:clamp(1rem,4vw,3.5rem); padding-right:clamp(1rem,4vw,3.5rem);}
-.max{max-width:1280px; margin:0 auto;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquadGames 🇹🇳 - ألعاب للشلة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { plex: ['IBM Plex Sans Arabic', 'sans-serif'], pop: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        accent: '#f5457f', 'accent-dark': '#c62c5e', 'accent-tint': '#2a1420',
+                        base: '#0a0a0c', ink: '#f2f3f5', gray: '#9a9da5', fog: '#18191c', line: '#2a2b2f',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root{ --ease: cubic-bezier(.22,1,.36,1); }
+        html { scroll-behavior: smooth; }
+        body { background-color: #0a0a0c; color: #f2f3f5; -webkit-font-smoothing: antialiased; }
+        .container-fluid { padding-left: clamp(1.25rem, 4vw, 3.5rem); padding-right: clamp(1.25rem, 4vw, 3.5rem); }
+        .section-pad { padding-top: clamp(2.5rem, 6vw, 5rem); padding-bottom: clamp(2.5rem, 6vw, 5rem); }
+        .eyebrow { letter-spacing: .18em; }
+        .tracked { letter-spacing: .1em; }
+        .tracked-sm { letter-spacing: .06em; }
 
-/* ---- liquid glass core ---- */
-.glass{
-  background:linear-gradient(160deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
-  backdrop-filter:blur(22px) saturate(170%); -webkit-backdrop-filter:blur(22px) saturate(170%);
-  border:1px solid var(--line);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -12px 24px -20px rgba(255,255,255,.15), 0 12px 40px -12px rgba(0,0,0,.55);
-  position:relative;
-}
-.glass::after{
-  content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
-  background:linear-gradient(120deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 30%);
-  mix-blend-mode:overlay;
-}
-.glass-shine{ position:relative; overflow:hidden; }
-.glass-shine::before{
-  content:''; position:absolute; top:0; bottom:0; width:60%; left:-80%;
-  background:linear-gradient(100deg, transparent, rgba(255,255,255,.18), transparent);
-  transform:skewX(-18deg); transition:left .9s var(--ease); pointer-events:none; z-index:2;
-}
-.glass-shine:hover::before{ left:120%; }
+        @keyframes dropIn { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .nav-enter { animation: dropIn .7s var(--ease) both; }
 
-/* ---- liquid blobs (deliberate single moment, not scattered) ---- */
-.blob{ position:absolute; border-radius:42% 58% 63% 37%/41% 44% 56% 59%; filter:blur(60px); opacity:.55; }
-@keyframes liquidMorph{
-  0%{ border-radius:42% 58% 63% 37%/41% 44% 56% 59%; transform:translate(0,0) rotate(0deg) scale(1); }
-  33%{ border-radius:63% 37% 41% 59%/47% 63% 37% 53%; transform:translate(2%,3%) rotate(8deg) scale(1.05); }
-  66%{ border-radius:37% 63% 56% 44%/59% 37% 63% 41%; transform:translate(-2%,-1%) rotate(-6deg) scale(.97); }
-  100%{ border-radius:42% 58% 63% 37%/41% 44% 56% 59%; transform:translate(0,0) rotate(0deg) scale(1); }
-}
-.blob{ animation:liquidMorph 22s var(--ease) infinite; }
-@media (prefers-reduced-motion:reduce){ .blob{ animation:none; } .reveal, .glass-shine::before{ transition:none; } }
+        .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-.eyebrow{letter-spacing:.16em;}
-.reveal{opacity:0; transform:translateY(16px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
-.reveal.show{opacity:1; transform:translateY(0);}
+        .flat-card { transition: border-color .35s var(--ease); }
+        .flat-card:hover { border-color: #f5457f; }
+        .flat-img { transition: opacity .5s var(--ease), transform 1s var(--ease); }
+        .flat-card:hover .flat-img { opacity: .55; transform: scale(1.02); }
+        .link-under {
+            background-image: linear-gradient(#f5457f, #f5457f);
+            background-size: 0% 2px; background-position: right bottom; background-repeat: no-repeat;
+            transition: background-size .35s var(--ease);
+        }
+        .link-under:hover { background-size: 100% 2px; }
 
-.no-scrollbar::-webkit-scrollbar{display:none;} .no-scrollbar{scrollbar-width:none;}
+        .ratio-4-5 { aspect-ratio: 4 / 5; }
 
-/* marquee */
-.marquee-track{animation:marquee 26s linear infinite; display:flex; white-space:nowrap; width:max-content;}
-@keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+        .marquee-track { animation: marquee 22s linear infinite; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* buttons */
-.btn-glass{
-  background:linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.04));
-  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.22); box-shadow:inset 0 1px 0 rgba(255,255,255,.3);
-  transition:transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
-}
-.btn-glass:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,.4); }
-.btn-glass:active{ transform:scale(.97) translateY(0); }
-.btn-accent{
-  background:linear-gradient(160deg, var(--pink), var(--pink-dk));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 10px 26px -8px rgba(255,61,127,.6);
-  transition:transform .25s var(--ease), box-shadow .25s var(--ease);
-}
-.btn-accent:hover{ transform:translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 16px 34px -8px rgba(255,61,127,.75); }
-.btn-accent:active{ transform:scale(.96); }
+        /* hero game-library — scroll-driven, not time-based.
+           Position is derived straight from the page's scroll offset, so there's
+           no infinite loop to break, no speed to tune, and nothing animates
+           (i.e. costs zero CPU/GPU) while the page is sitting still. */
+        .hero-lib { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+        .hero-lib-row { display: flex; gap: 14px; width: max-content; }
+        .hero-lib-row img {
+            width: clamp(90px, 12vw, 150px); aspect-ratio: 4 / 5; object-fit: cover;
+            border-radius: 10px; opacity: .55; flex: none;
+        }
+        .hero-lib-row--a { margin-bottom: 14px; }
+        @keyframes heroLibLeft  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes heroLibRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
-/* product tile placeholder art (no external images available) */
-.tile-art{ position:relative; aspect-ratio:4/5; border-radius:20px; overflow:hidden; }
-.tile-art img{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; transition:transform .5s var(--ease), opacity .5s var(--ease); }
-.rail-card:hover .tile-art img{ transform:scale(1.04); opacity:.9; }
-.tile-art .grain{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.14), transparent 40%, rgba(0,0,0,.25)); pointer-events:none; }
+        /* Progressive enhancement: only browsers that support scroll-driven
+           animations get the sliding effect. Everyone else just sees the
+           static image grid — no broken fallback, nothing to patch. */
+        @supports (animation-timeline: scroll()) {
+            .hero-lib-row--a { animation: heroLibLeft 1s linear both; animation-timeline: scroll(root block); }
+            .hero-lib-row--b { animation: heroLibRight 1s linear both; animation-timeline: scroll(root block); }
+        }
 
-.badge{ position:absolute; top:12px; right:12px; z-index:3; font-size:10px; font-weight:700; letter-spacing:.04em; padding:5px 10px; border-radius:999px; color:#fff; }
+        .hero-lib-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(180deg, rgba(10,10,12,.55) 0%, rgba(10,10,12,.82) 55%, #0a0a0c 100%);
+        }
 
-.rail-card{ scroll-snap-align:start; flex:none; width:44%; }
-@media(min-width:640px){ .rail-card{ width:31%; } }
-@media(min-width:900px){ .rail-card{ width:23.5%; } }
-@media(min-width:1200px){ .rail-card{ width:21.5%; } }
+        .order-btn { transition: background-color .3s var(--ease), transform .3s var(--ease); }
+        .order-btn:active { transform: scale(.96); }
+        .flat-card:hover .order-btn { background-color: #c62c5e; }
+        .flat-arrow { transition: transform .35s var(--ease); }
+        .flat-card:hover .flat-arrow { transform: translateX(-4px); }
 
-.section-num{ font-size:11px; font-weight:700; color:var(--pink); }
+        .lang-btn.active { color: #f2f3f5; font-weight: 700; }
 
-/* =========================
-   MOBILE / RESPONSIVE FIXES
-   ========================= */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .rail-card { scroll-snap-stop: always; }
 
-/* Fix safe-area declarations: they belong to the page, not :root */
-body{
-  padding-top:env(safe-area-inset-top, 0px);
-  padding-bottom:env(safe-area-inset-bottom, 0px);
-}
+        @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+    </style>
 
-/* Prevent accidental horizontal overflow while preserving horizontal product rails */
-html, body{max-width:100%;}
-
-/* Better touch behavior */
-a, button{ -webkit-tap-highlight-color:transparent; }
-button{ font-family:inherit; cursor:pointer; }
-
-/* Small phones */
-@media (max-width:639px){
-  .wrap{
-    padding-left:14px;
-    padding-right:14px;
-  }
-
-  /* Announcement bar */
-  .marquee-track{
-    animation-duration:32s;
-  }
-
-  /* Floating nav */
-  nav{
-    padding:8px 10px 0 !important;
-  }
-  nav > .glass{
-    padding:8px 10px !important;
-    gap:8px !important;
-  }
-  nav a{
-    min-height:40px;
-  }
-  nav a:first-child{
-    padding:8px 11px !important;
-    font-size:11px !important;
-  }
-  nav a:last-child{
-    padding:9px 14px !important;
-    font-size:11px !important;
-    white-space:nowrap;
-  }
-  nav .hide-sm{
-    display:none;
-  }
-
-  /* Hero */
-  main section:first-child{
-    padding-top:52px !important;
-    padding-bottom:64px !important;
-  }
-  main section:first-child h1{
-    font-size:clamp(1.85rem,9vw,2.55rem) !important;
-    line-height:1.25 !important;
-    margin:14px 0 16px !important;
-  }
-  main section:first-child p{
-    font-size:14px !important;
-    line-height:1.8 !important;
-    margin:0 auto 25px !important;
-    max-width:330px !important;
-  }
-  main section:first-child > .wrap > a{
-    width:100%;
-    max-width:300px;
-    text-align:center;
-    padding:14px 20px !important;
-  }
-
-  /* Stats become a compact 3-column strip */
-  main section:first-child .glass{
-    width:100%;
-    margin-top:38px !important;
-    padding:14px 10px !important;
-    gap:0 !important;
-    display:grid !important;
-    grid-template-columns:repeat(3,1fr);
-  }
-  main section:first-child .glass > div{
-    padding:0 7px;
-  }
-  main section:first-child .glass > div:nth-child(2),
-  main section:first-child .glass > div:nth-child(4){
-    width:1px !important;
-    justify-self:center;
-    padding:0;
-  }
-  main section:first-child .glass .pop{
-    font-size:17px !important;
-  }
-  main section:first-child .glass div div:last-child{
-    font-size:9px !important;
-    line-height:1.4;
-  }
-
-  /* Product sections */
-  #shop{
-    padding-bottom:38px !important;
-  }
-  #shop > section{
-    margin-bottom:48px !important;
-  }
-  #shop > section:last-child{
-    margin-bottom:0 !important;
-  }
-  #shop h2{
-    font-size:1.05rem !important;
-    line-height:1.5 !important;
-  }
-  .section-num{
-    font-size:10px;
-    flex:none;
-  }
-
-  /* On phones show one full card + a small peek of the next card.
-     This is easier to understand and swipe than 44% cards. */
-  .rail-track{
-    gap:12px !important;
-    padding-left:1px;
-    padding-right:1px;
-    scroll-padding-inline:1px;
-    -webkit-overflow-scrolling:touch;
-  }
-  .rail-card{
-    width:min(82vw,320px) !important;
-  }
-  .rail-card .tile-art{
-    border-radius:17px;
-  }
-  .rail-card{
-    border-radius:19px !important;
-    padding:10px !important;
-  }
-  .rail-card h3{
-    font-size:13px !important;
-    min-height:0 !important;
-    margin-bottom:9px !important;
-  }
-  .rail-card .btn-accent{
-    min-height:44px;
-    font-size:13px !important;
-  }
-  .badge{
-    top:10px;
-    right:10px;
-    font-size:9px;
-    padding:5px 8px;
-  }
-
-  /* Footer */
-  footer{
-    padding:0 10px 20px !important;
-  }
-  footer > .glass{
-    padding:28px 18px 20px !important;
-    border-radius:22px !important;
-  }
-  #footer-grid{
-    gap:26px !important;
-  }
-  #footer-grid > div{
-    text-align:center !important;
-  }
-  #footer-grid > div:nth-child(3) a{
-    word-break:break-word;
-  }
-  #footer-grid > div:nth-child(4){
-    gap:10px !important;
-  }
-}
-
-/* Medium phones / larger mobile */
-@media (min-width:400px) and (max-width:639px){
-  .rail-card{
-    width:76vw !important;
-    max-width:330px;
-  }
-}
-
-/* Tablets: make cards slightly larger and keep the rail comfortable */
-@media (min-width:640px) and (max-width:899px){
-  .rail-card{width:45%;}
-}
-
-/* Make the footer responsive without JS */
-@media (min-width:640px){
-  #footer-grid{
-    grid-template-columns:repeat(4,1fr) !important;
-  }
-}
-
-/* Landscape phones */
-@media (max-width:639px) and (orientation:landscape){
-  main section:first-child{
-    padding-top:38px !important;
-    padding-bottom:45px !important;
-  }
-  main section:first-child h1{
-    max-width:700px;
-  }
-}
-
-/* Accessibility / low-motion */
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto;}
-  .marquee-track{animation:none;}
-}
-
-</style>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1857560888559437');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1857560888559437&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
-<body>
+<body class="font-plex flex flex-col min-h-screen antialiased selection:bg-accent selection:text-white">
 
-<!-- announcement marquee -->
-<div class="glass" style="border-radius:0; border-left:none; border-right:none; border-top:none; padding:9px 0; font-size:11px; letter-spacing:.08em;">
-  <div class="marquee-track" id="marquee"></div>
-</div>
-
-<!-- floating glass nav -->
-<nav style="position:sticky; top:calc(env(safe-area-inset-top,0px) + 10px); z-index:50; display:flex; justify-content:center; padding:10px 14px 0;">
-  <div class="glass max" style="width:100%; border-radius:999px; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
-    <a href="#rules" class="btn-glass" style="display:flex; align-items:center; gap:6px; padding:8px 14px; border-radius:999px; font-size:12px; font-weight:600; color:var(--ink); text-decoration:none;">
-      <span>📖</span><span class="hide-sm">قواعد ألعابنا</span>
-    </a>
-    <a href="#top" style="font-family:'Poppins',sans-serif; font-weight:700; font-size:16px; background:linear-gradient(90deg,#fff,var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; text-decoration:none;">SquadGames</a>
-    <a href="#shop" class="btn-accent" style="padding:9px 18px; border-radius:999px; font-size:12px; font-weight:700; color:#fff; text-decoration:none;">تسوق الآن</a>
-  </div>
-</nav>
-
-<main id="top">
-
-<!-- HERO -->
-<section style="position:relative; padding:70px 0 90px; overflow:hidden;">
-  <div class="blob" style="width:60vw; height:60vw; max-width:640px; max-height:640px; top:-18%; right:-14%; background:radial-gradient(circle at 30% 30%, var(--pink), transparent 70%);"></div>
-  <div class="blob" style="width:50vw; height:50vw; max-width:520px; max-height:520px; bottom:-20%; left:-10%; background:radial-gradient(circle at 60% 40%, var(--violet), transparent 70%); animation-delay:-9s;"></div>
-
-  <div class="wrap max" style="position:relative; z-index:2; text-align:center; display:flex; flex-direction:column; align-items:center;">
-    <span class="eyebrow" style="color:var(--pink); font-size:12px; font-weight:700;">SQUAD GAMES · TUNISIA</span>
-    <h1 style="font-weight:700; line-height:1.15; margin:18px 0 22px; font-size:clamp(2rem,6.5vw,4rem); max-width:780px;">
-      ألعاب تونسية تلمّ العايلة والشلة حول طاولة وحدة
-    </h1>
-    <p style="color:var(--gray); max-width:520px; margin-bottom:34px; font-size:15px; line-height:1.8;">
-      قضايا بوليسية، كروت كرة القدم، وألعاب سهرة — كل شيء مصمّم ومطبوع في تونس.
-    </p>
-    <a href="#shop" class="btn-accent" style="padding:16px 30px; border-radius:999px; font-weight:700; font-size:14px; color:#fff; text-decoration:none;">اكتشف المجموعة ←</a>
-
-    <!-- floating glass stat strip -->
-    <div class="glass" style="margin-top:56px; border-radius:22px; padding:18px 26px; display:flex; gap:28px; flex-wrap:wrap; justify-content:center;">
-      <div style="text-align:center;"><div class="pop" style="font-weight:700; font-size:20px;">9+</div><div style="font-size:11px; color:var(--gray);">ألعاب متوفرة</div></div>
-      <div style="width:1px; background:var(--line);"></div>
-      <div style="text-align:center;"><div class="pop" style="font-weight:700; font-size:20px;">24-48س</div><div style="font-size:11px; color:var(--gray);">توصيل تونس</div></div>
-      <div style="width:1px; background:var(--line);"></div>
-      <div style="text-align:center;"><div class="pop" style="font-weight:700; font-size:20px;">🇹🇳</div><div style="font-size:11px; color:var(--gray);">صنع في تونس</div></div>
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="bg-black text-white overflow-hidden py-2.5 text-[11px] tracked">
+        <div class="marquee-track flex whitespace-nowrap" id="marquee"></div>
     </div>
-  </div>
-</section>
 
-<div id="shop" class="wrap max" style="padding-bottom:60px;">
+    <!-- STICKY NAV -->
+    <nav class="nav-enter bg-base/90 backdrop-blur-md border-b border-line sticky top-0 z-50">
+        <div class="container-fluid mx-auto max-w-7xl relative flex items-center justify-between py-5">
+            <a href="rules.html" class="hidden md:flex items-center gap-2 text-xs font-semibold tracked-sm text-ink/80 hover:text-accent transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <span class="link-under pb-0.5">قواعد ألعابنا</span>
+            </a>
 
-  <section class="reveal" style="margin-bottom:70px;">
-    <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:22px;">
-      <span class="section-num">01</span>
-      <h2 style="font-weight:700; font-size:clamp(1.15rem,2vw,1.5rem); margin:0;">ألعاب التحقيق والقضايا <span style="color:var(--gray); font-weight:400;">(Criminal Case)</span></h2>
-    </div>
-    <div class="rail-outer" style="position:relative;">
-      <div class="rail-track no-scrollbar" id="rail-criminal" style="display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px;"></div>
-    </div>
-  </section>
+            <a href="/" class="absolute left-1/2 -translate-x-1/2 transition-transform duration-300 hover:scale-105">
+                <img src="sg.png" alt="Squad Games" class="h-11 md:h-12 object-contain">
+            </a>
 
-  <section class="reveal" style="margin-bottom:70px;">
-    <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:22px;">
-      <span class="section-num">02</span>
-      <h2 style="font-weight:700; font-size:clamp(1.15rem,2vw,1.5rem); margin:0;">سلسلة كورة أونو <span style="color:var(--gray); font-weight:400;">(Koora Uno)</span></h2>
-    </div>
-    <div class="rail-track no-scrollbar" id="rail-koora" style="display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px;"></div>
-  </section>
-
-  <section class="reveal">
-    <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:22px;">
-      <span class="section-num">03</span>
-      <h2 style="font-weight:700; font-size:clamp(1.15rem,2vw,1.5rem); margin:0;">بقية الألعاب الترفيهية</h2>
-    </div>
-    <div class="rail-track no-scrollbar" id="rail-other" style="display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px;"></div>
-  </section>
-
-</div>
-</main>
-
-<!-- FOOTER -->
-<footer style="padding:0 14px 30px;">
-  <div class="glass max" style="border-radius:26px; padding:36px 28px;">
-    <div style="display:grid; grid-template-columns:1fr; gap:30px;" id="footer-grid">
-      <div style="text-align:center;">
-        <div class="pop" style="font-weight:700; font-size:18px; background:linear-gradient(90deg,#fff,var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent;">SquadGames</div>
-        <p style="color:var(--gray); font-size:12px; margin-top:10px; line-height:1.7;">ألعاب طاولة مصمّمة ومطبوعة في تونس — قضايا، كروت، وسهرات صنعت باش تلمّ الشلة.</p>
-      </div>
-      <div style="text-align:center;">
-        <h3 style="color:var(--gray); font-size:11px; letter-spacing:.1em; margin-bottom:12px;">روابط</h3>
-        <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
-          <a href="#shop" style="color:var(--ink); text-decoration:none;">المتجر</a>
-          <a href="#rules" style="color:var(--ink); text-decoration:none;">قواعد الألعاب</a>
+            <div class="flex items-center gap-4 mr-auto">
+                <a href="rules.html" class="md:hidden text-ink/80">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </a>
+                <a href="#shop" class="bg-accent hover:bg-accent-dark text-white font-bold text-xs tracked-sm px-5 py-2.5 rounded-full transition-all duration-300">
+                    تسوق الآن
+                </a>
+            </div>
         </div>
-      </div>
-      <div style="text-align:center;" dir="ltr">
-        <h3 style="color:var(--gray); font-size:11px; letter-spacing:.1em; margin-bottom:12px;">تواصل معنا</h3>
-        <div style="display:flex; flex-direction:column; gap:8px; font-size:13px;">
-          <a href="tel:51640632" style="color:var(--ink); text-decoration:none;">📞 (+216) 51 640 632</a>
-          <a href="mailto:abassimosaab@gmail.com" style="color:var(--ink); text-decoration:none;">✉️ abassimosaab@gmail.com</a>
+    </nav>
+
+    <main class="flex-grow z-10">
+
+        <!-- HERO -->
+        <section class="relative overflow-hidden bg-black">
+            <!-- game-library background: slides based on page scroll position (not a timed loop), filled by script -->
+            <div class="hero-lib" aria-hidden="true">
+                <div class="hero-lib-row hero-lib-row--a" id="hero-row-a"></div>
+                <div class="hero-lib-row hero-lib-row--b" id="hero-row-b"></div>
+            </div>
+            <div class="hero-lib-overlay"></div>
+            <div class="absolute inset-0 z-[1]">
+                <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-accent/30 blur-3xl"></div>
+            </div>
+            <div class="relative z-10 container-fluid mx-auto max-w-7xl py-20 sm:py-28 md:py-36 text-center flex flex-col items-center">
+                <span class="eyebrow text-accent text-xs font-bold tracked mb-5 uppercase">Squad Games TN</span>
+                <h1 class="text-white font-bold leading-[1.15] mb-6" style="font-size:clamp(1.9rem,6.5vw,4.5rem);">
+                    ألعاب تونسية بش تلم العايلة والشلة
+                </h1>
+                <p class="text-white/70 max-w-xl mx-auto mb-10 text-sm md:text-base leading-relaxed">
+                    قضايا بوليسية، كروت كرة القدم، وألعاب سهرة — كل شيء مصمّم ومطبوع في تونس، ليجمعكم حول الطاولة.
+                </p>
+                <a href="#shop" class="group bg-accent hover:bg-white text-white hover:text-black font-bold text-sm tracked-sm px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-3">
+                    <span>اكتشف المجموعة</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <div id="shop" class="container-fluid mx-auto section-pad max-w-7xl">
+
+        <!-- ================= قسم ألعاب التحقيق والجريمة ================= -->
+        <section class="reveal mb-24">
+            <div class="flex items-baseline gap-3 mb-8">
+                <span class="eyebrow text-accent text-xs font-bold tracked">01</span>
+                <h2 class="font-bold text-ink" style="font-size:clamp(1.2rem,2vw,1.6rem);">ألعاب التحقيق والقضايا <span class="text-gray font-normal">(Criminal Case)</span></h2>
+            </div>
+            <div class="rail-outer relative">
+                <button type="button" class="rail-btn rail-prev absolute top-1/2 -translate-y-1/2 right-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white opacity-0 pointer-events-none transition-opacity duration-300" aria-label="السابق"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></button>
+                <div class="rail-track flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0" id="rail-criminal"></div>
+                <button type="button" class="rail-btn rail-next absolute top-1/2 -translate-y-1/2 left-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white transition-opacity duration-300" aria-label="التالي"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg></button>
+            </div>
+        </section>
+
+        <!-- ================= قسم كورة أونو ================= -->
+        <section class="reveal mb-24">
+            <div class="flex items-baseline gap-3 mb-8">
+                <span class="eyebrow text-accent text-xs font-bold tracked">02</span>
+                <h2 class="font-bold text-ink" style="font-size:clamp(1.2rem,2vw,1.6rem);">سلسلة كورة أونو <span class="text-gray font-normal">(Koora Uno)</span></h2>
+            </div>
+            <div class="rail-outer relative">
+                <button type="button" class="rail-btn rail-prev absolute top-1/2 -translate-y-1/2 right-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white opacity-0 pointer-events-none transition-opacity duration-300" aria-label="السابق"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></button>
+                <div class="rail-track flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0" id="rail-koora"></div>
+                <button type="button" class="rail-btn rail-next absolute top-1/2 -translate-y-1/2 left-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white transition-opacity duration-300" aria-label="التالي"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg></button>
+            </div>
+        </section>
+
+        <!-- ================= قسم بقية الألعاب والترفيه ================= -->
+        <section class="reveal mb-8">
+            <div class="flex items-baseline gap-3 mb-8">
+                <span class="eyebrow text-accent text-xs font-bold tracked">03</span>
+                <h2 class="font-bold text-ink" style="font-size:clamp(1.2rem,2vw,1.6rem);">بقية الألعاب الترفيهية</h2>
+            </div>
+            <div class="rail-outer relative">
+                <button type="button" class="rail-btn rail-prev absolute top-1/2 -translate-y-1/2 right-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white opacity-0 pointer-events-none transition-opacity duration-300" aria-label="السابق"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></button>
+                <div class="rail-track flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-ps-5 pb-2 -mx-5 px-5 sm:mx-0 sm:px-0" id="rail-other"></div>
+                <button type="button" class="rail-btn rail-next absolute top-1/2 -translate-y-1/2 left-1 z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray/40 hover:bg-gray/70 backdrop-blur-sm text-white transition-opacity duration-300" aria-label="التالي"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg></button>
+            </div>
+        </section>
+
         </div>
-      </div>
-      <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
-        <h3 style="color:var(--gray); font-size:11px; letter-spacing:.1em;">تابعنا</h3>
-        <div style="display:flex; gap:10px;">
-          <a href="https://www.instagram.com/squad.games.tn/" target="_blank" class="btn-glass" style="width:38px; height:38px; border-radius:999px; display:flex; align-items:center; justify-content:center; text-decoration:none;">📷</a>
-          <a href="https://wa.me/21651640632" target="_blank" class="btn-glass" style="width:38px; height:38px; border-radius:999px; display:flex; align-items:center; justify-content:center; text-decoration:none;">💬</a>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-fog border-t border-line text-ink mt-8 z-10 relative">
+        <div class="container-fluid mx-auto max-w-7xl pt-16 pb-8">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-line">
+
+                <div class="md:col-span-1 flex flex-col gap-4">
+                    <img src="sg.png" alt="Squad Games" class="h-10 object-contain self-center md:self-start">
+                    <p class="text-xs text-gray leading-relaxed text-center md:text-right">
+                        ألعاب طاولة مصمّمة ومطبوعة في تونس — قضايا، كروت، وسهرات صنعت باش تلمّ الشلة.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center md:items-start gap-3">
+                    <h3 class="eyebrow font-bold text-xs tracked text-gray uppercase mb-1">روابط</h3>
+                    <a href="#shop" class="link-under pb-0.5 text-sm text-ink/80 hover:text-accent transition-colors duration-300">المتجر</a>
+                    <a href="rules.html" class="link-under pb-0.5 text-sm text-ink/80 hover:text-accent transition-colors duration-300">قواعد الألعاب</a>
+                    <a href="#" class="link-under pb-0.5 text-sm text-ink/80 hover:text-accent transition-colors duration-300">من نحن</a>
+                </div>
+
+                <div class="flex flex-col items-center md:items-start gap-3">
+                    <h3 class="eyebrow font-bold text-xs tracked text-gray uppercase mb-1">تواصل معنا</h3>
+                    <div class="text-sm text-ink/80 flex flex-col gap-2 items-center md:items-start" dir="ltr">
+                        <a href="tel:51640632" class="link-under pb-0.5 hover:text-accent transition-colors duration-300">📞 (+216) 51 640 632</a>
+                        <a href="mailto:abassimosaab@gmail.com" class="link-under pb-0.5 hover:text-accent transition-colors duration-300">✉️ abassimosaab@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <h3 class="eyebrow font-bold text-xs tracked text-gray uppercase mb-1">تابعنا</h3>
+                    <div class="flex gap-3">
+                        <a href="https://www.instagram.com/squad.games.tn/" target="_blank" class="w-9 h-9 flex items-center justify-center bg-fog text-ink border border-line rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://wa.me/21651640632" target="_blank" class="w-9 h-9 flex items-center justify-center bg-fog text-ink border border-line rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.438-9.89 9.886-.001 2.15.613 3.941 1.819 5.41l-1.026 3.75 3.866-1.015zm11.389-7.115c-.301-.15-1.781-.879-2.056-.979-.275-.1-.475-.15-.675.15-.2.3-.775.979-.95 1.179-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.488-.894-.797-1.497-1.783-1.672-2.083-.175-.3-.019-.462.13-.611.135-.133.3-.35.45-.525.15-.175.2-.3.3-.5s.05-.375-.025-.525-.675-1.625-.925-2.225c-.244-.589-.491-.51-.675-.519-.174-.01-.374-.012-.574-.012s-.525.075-.8.375c-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.115 3.23 5.125 4.535.715.311 1.275.496 1.71.635.717.227 1.369.195 1.885.118.575-.085 1.781-.729 2.031-1.433.25-.704.25-1.306.175-1.433-.075-.127-.275-.202-.575-.352z"/></svg>
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs mt-1">
+                        <button class="lang-btn active tracked-sm text-gray hover:text-ink transition-colors duration-200" onclick="setLang('ar')">AR</button>
+                        <span class="text-line">/</span>
+                        <button class="lang-btn tracked-sm text-gray hover:text-ink transition-colors duration-200" onclick="setLang('fr')">FR</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 text-center text-[11px] text-gray tracked-sm">
+                &copy; 2026 SQUAD GAMES TN — جميع الحقوق محفوظة
+            </div>
         </div>
-      </div>
-    </div>
-    <div style="text-align:center; font-size:11px; color:var(--gray); margin-top:30px; padding-top:20px; border-top:1px solid var(--line);">© 2026 SQUAD GAMES TN — جميع الحقوق محفوظة</div>
-  </div>
-</footer>
+    </footer>
 
-<script>
-const ARROW = '←';
-const DELIVERY = '+ 7 د.ت توصيل';
-const badge = (t,c)=> t? `<span class="badge" style="background:${c||'#111'};">${t}</span>` : '';
+    <script>
+        // ---------- data ----------
+        const ARROW_SVG = '<svg xmlns="http://www.w3.org/2000/svg" class="flat-arrow h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>';
+        const DELIVERY = '+ 7 د.ت توصيل';
 
-function tile(p){
-  return `<div class="tile-art">
-    <img src="${p.img}" alt="${p.title}" loading="lazy">
-    <div class="grain"></div>
-    ${badge(p.badge,p.badgeColor)}
-  </div>`;
-}
+        const badge = (text, cls) => text ? `<span class="absolute top-3 right-3 ${cls} text-white font-bold text-[10px] tracked-sm px-2.5 py-1 rounded-full z-10">${text}</span>` : '';
 
-function cardHTML(p){
-  const priceRow = p.oldPrice
-    ? `<div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px; flex-wrap:wrap; gap:4px;">
-         <div style="display:flex; align-items:baseline; gap:8px;"><span class="pop" style="font-weight:700; font-size:17px;">${p.price} د.ت</span><span style="font-size:11px; color:var(--gray); text-decoration:line-through;">${p.oldPrice} د.ت</span></div>
-         <span style="font-size:10px; color:var(--gray);">${DELIVERY}</span>
-       </div>`
-    : `<div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px;">
-         <span class="pop" style="font-weight:700; font-size:17px;">${p.price} د.ت</span>
-         <span style="font-size:10px; color:var(--gray);">${DELIVERY}</span>
-       </div>`;
+        function cardHTML(p) {
+            if (p.disabled) {
+                return `<div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between opacity-60">
+                    <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
+                        ${badge(p.badge, 'bg-gray')}
+                        <img src="${p.img}" alt="${p.title}" class="flat-img w-full h-full object-cover object-center">
+                    </div>
+                    <div class="pt-4 flex flex-col flex-grow">
+                        <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">${p.title}</h3>
+                        <div class="flex items-baseline justify-between mb-3">
+                            <span class="text-ink font-pop font-bold text-lg">${p.price} د.ت</span>
+                            <span class="text-[11px] text-gray">${DELIVERY}</span>
+                        </div>
+                        <button class="w-full bg-gray/30 text-gray font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2 cursor-not-allowed" disabled>
+                            <span>قريباً جداً</span>
+                        </button>
+                    </div>
+                </div>`;
+            }
 
-  return `<div class="rail-card glass glass-shine" style="border-radius:22px; padding:12px; cursor:pointer;" onclick="window.open('${p.url}','_blank')">
-    ${tile(p)}
-    <div style="padding-top:12px;">
-      <h3 style="font-size:13px; font-weight:600; margin:0 0 10px; min-height:34px; line-height:1.4;">${p.title}</h3>
-      ${priceRow}
-      <button class="btn-accent" style="width:100%; padding:11px; border:none; border-radius:999px; color:#fff; font-weight:700; font-size:13px; display:flex; align-items:center; justify-content:center; gap:6px;">اطلب الآن <span>${ARROW}</span></button>
-    </div>
-  </div>`;
-}
+            const priceBlock = p.oldPrice
+                ? `<div class="flex items-baseline justify-between mb-3 flex-wrap gap-1">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-ink font-pop font-bold text-lg">${p.price} د.ت</span>
+                            <span class="text-xs text-gray line-through font-medium">${p.oldPrice} د.ت</span>
+                        </div>
+                        <span class="text-[11px] text-gray">${DELIVERY}</span>
+                   </div>`
+                : `<div class="flex items-baseline justify-between mb-3">
+                        <span class="text-ink font-pop font-bold text-lg">${p.price} د.ت</span>
+                        <span class="text-[11px] text-gray">${DELIVERY}</span>
+                   </div>`;
 
-const PRODUCTS = {
-  'rail-criminal': [
-    { img:'6cases.jpg', badge:'🔥 الأكثر مبيعاً', badgeColor:'#ff3d7f', title:'Criminal Case Tunisia - ستة قضايا', price:35, url:'https://tally.so/r/medkpo' },
-    { img:'3cases.jpg', title:'Criminal Case Tunisia - ثلاثة قضايا', price:25, url:'https://tally.so/r/wojBeO' },
-    { img:'8cases.jpg', badge:'🆕 جديد', badgeColor:'#111', title:'Criminal Case Tunisia - ثمانية قضايا', price:40, url:'https://tally.so/r/WOQ4Mk' },
-  ],
-  'rail-koora': [
-    { img:'koorauno.jpg', title:'كورة أونو - لعبة كروت كرة القدم', price:35, url:'https://tally.so/r/yPMW58' },
-    { img:'kooraunotn.jpg', badge:'🆕 جديد', badgeColor:'#111', title:'Koora Uno - نسخة تونس', price:30, url:'https://tally.so/r/684ekk' },
-    { img:'kooraunodouble.jpg', badge:'💥 عرض خاص', badgeColor:'#ff3d7f', title:'Koora UNO النسخة العالمية + التونسية', price:50, oldPrice:65, url:'https://tally.so/r/2EVBrj' },
-  ],
-  'rail-other': [
-    { img:'coupezaction.jpg', badge:'🆕 جديد', badgeColor:'#111', title:'Coupez Action - لعبة المسلسلات التونسية', price:35, url:'https://tally.so/r/vGKGbv' },
-    { img:'100tounsi.jpg', badge:'🆕 جديد', badgeColor:'#111', title:'100 تونسي - لعبة الشلة والعائلة', price:35, url:'https://tally.so/r/A7bRqB' },
-    { img:'loupgarou.jpg', badge:'🆕 جديد', badgeColor:'#111', title:'الذيوبة - Loup Garou', price:30, url:'https://tally.so/r/Y5AeJ0' },
-  ],
-};
-Object.entries(PRODUCTS).forEach(([id,list])=>{ document.getElementById(id).innerHTML = list.map(cardHTML).join(''); });
+            return `<div class="flat-card rail-card group relative flex-none w-[42%] sm:w-[30%] md:w-[24%] lg:w-[21%] snap-start flex flex-col justify-between cursor-pointer" onclick="window.open('${p.url}', '_blank')">
+                <div class="relative ratio-4-5 w-full bg-fog overflow-hidden border border-line">
+                    ${badge(p.badge, p.badgeClass || 'bg-black')}
+                    <img src="${p.img}" alt="${p.title}" class="flat-img w-full h-full object-cover object-center">
+                </div>
+                <div class="pt-4 flex flex-col flex-grow">
+                    <h3 class="font-semibold text-ink text-sm mb-3 line-clamp-2">${p.title}</h3>
+                    ${priceBlock}
+                    <button class="order-btn w-full bg-accent text-white font-bold text-sm tracked-sm py-3 rounded-full flex items-center justify-center gap-2">
+                        <span>اطلب الآن</span>${ARROW_SVG}
+                    </button>
+                </div>
+            </div>`;
+        }
 
-const items = ['✨ توصيل سريع لكامل تراب الجمهورية التونسية خلال 24/48 ساعة','✨ SQUADGAMES — ألعاب أصيلة صنعت للشلة'];
-document.getElementById('marquee').innerHTML = items.concat(items).map(t=>`<span style="padding:0 34px;">${t}</span>`).join('');
+        const PRODUCTS = {
+            'rail-criminal': [
+                { img: '6cases.jpg', badge: '🔥 الأكثر مبيعاً', badgeClass: 'bg-accent', title: 'Criminal Case Tunisia - ستة قضايا', price: 35, url: 'https://tally.so/r/medkpo' },
+                { img: '3cases.jpg', title: 'Criminal Case Tunisia - ثلاثة قضايا', price: 25, url: 'https://tally.so/r/wojBeO' },
+                { img: '8cases.jpg', badge: '🆕 جديد', title: 'Criminal Case Tunisia - ثمانية قضايا', price: 40, url: 'https://tally.so/r/WOQ4Mk' },
+            ],
+            'rail-koora': [
+                { img: 'koorauno.jpg', title: 'كورة أونو - لعبة كروت كرة القدم', price: 35, url: 'https://tally.so/r/yPMW58' },
+                { img: 'kooraunotn.jpg', badge: '🆕 جديد', title: 'Koora Uno - نسخة تونس', price: 30, url: 'https://tally.so/r/684ekk' },
+                { img: 'kooraunodouble.jpg', badge: '💥 عرض خاص', badgeClass: 'bg-accent', title: 'Koora UNO النسخة العالمية + النسخة التونسية', price: 50, oldPrice: 65, url: 'https://tally.so/r/2EVBrj' },
+            ],
+            'rail-other': [
+                { img: 'coupezaction.jpg', badge: '🆕 جديد', title: 'Coupez Action - لعبة المسلسلات التونسية', price: 35, url: 'https://tally.so/r/vGKGbv' },
+                { img: '100tounsi.jpg', badge: '🆕 جديد', title: '100 تونسي - لعبة الشلة وعائلة', price: 35, url: 'https://tally.so/r/A7bRqB' },
+                { img: 'loupgarou.jpg', badge: '🆕 جديد', title: 'الذيوبة - Loup Garou', price: 30, url: 'https://tally.so/r/Y5AeJ0' },
+            ],
+        };
 
-const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } }), {threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+        Object.entries(PRODUCTS).forEach(([railId, list]) => {
+            document.getElementById(railId).innerHTML = list.map(cardHTML).join('');
+        });
 
+        // announcement marquee (duplicated once for a seamless -50% loop)
+        const marqueeItems = [
+            '✨ توصيل سريع لكامل تراب الجمهورية التونسية خلال 24/48 ساعة فقط',
+            '✨ SQUADGAMES — ألعاب أصيلة صنعت للشلة',
+        ];
+        document.getElementById('marquee').innerHTML = marqueeItems.concat(marqueeItems)
+            .map(t => `<span class="px-8">${t}</span>`).join('');
 
-</script>
+        // hero background library: two rows built from one image list, scroll-animated in opposite directions
+        const HERO_IMAGES = ['6cases.jpg','3cases.jpg','8cases.jpg','koorauno.jpg','kooraunodouble.jpg','loupgarou.jpg','100tounsi.jpg','coupezaction.jpg','kooraunotn.jpg'];
+        const REPEATS = 4; // enough copies so the strip never runs out while scrolling
+        const rowHTML = imgs => Array(REPEATS).fill(imgs).flat().map(src => `<img src="${src}" alt="">`).join('');
+        document.getElementById('hero-row-a').innerHTML = rowHTML(HERO_IMAGES);
+        document.getElementById('hero-row-b').innerHTML = rowHTML([...HERO_IMAGES].reverse());
+
+        // scroll reveal
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        // netflix-style rail arrow controls
+        document.querySelectorAll('.rail-outer').forEach((wrap) => {
+            const track = wrap.querySelector('.rail-track');
+            const prevBtn = wrap.querySelector('.rail-prev');
+            const nextBtn = wrap.querySelector('.rail-next');
+            if (!track || !prevBtn || !nextBtn) return;
+
+            const update = () => {
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                const current = Math.abs(track.scrollLeft);
+                const atStart = current <= 4;
+                const atEnd = current >= maxScroll - 4 || maxScroll <= 4;
+                prevBtn.style.opacity = atStart ? '0' : '1';
+                prevBtn.style.pointerEvents = atStart ? 'none' : 'auto';
+                nextBtn.style.opacity = atEnd ? '0' : '1';
+                nextBtn.style.pointerEvents = atEnd ? 'none' : 'auto';
+            };
+
+            const scrollAmount = () => track.clientWidth * 0.85;
+            prevBtn.addEventListener('click', () => track.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+            nextBtn.addEventListener('click', () => track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+
+            track.addEventListener('scroll', update);
+            window.addEventListener('resize', update);
+            update();
+        });
+
+        // language switcher (visual state only — placeholder for future i18n)
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
 </body>
 </html>
