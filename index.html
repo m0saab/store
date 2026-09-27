@@ -11,7 +11,6 @@
   --base:#07070a; --ink:#f4f5f8; --gray:#9a9da8; --line:rgba(255,255,255,.12);
   --pink:#ff3d7f; --pink-dk:#c6205d; --violet:#7c5cff; --amber:#ffb648;
   --ease: cubic-bezier(.22,1,.36,1);
-  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
@@ -93,6 +92,222 @@ body{margin:0; background:var(--base); color:var(--ink); font-family:'IBM Plex S
 @media(min-width:1200px){ .rail-card{ width:21.5%; } }
 
 .section-num{ font-size:11px; font-weight:700; color:var(--pink); }
+
+/* =========================
+   MOBILE / RESPONSIVE FIXES
+   ========================= */
+
+/* Fix safe-area declarations: they belong to the page, not :root */
+body{
+  padding-top:env(safe-area-inset-top, 0px);
+  padding-bottom:env(safe-area-inset-bottom, 0px);
+}
+
+/* Prevent accidental horizontal overflow while preserving horizontal product rails */
+html, body{max-width:100%;}
+
+/* Better touch behavior */
+a, button{ -webkit-tap-highlight-color:transparent; }
+button{ font-family:inherit; cursor:pointer; }
+
+/* Small phones */
+@media (max-width:639px){
+  .wrap{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  /* Announcement bar */
+  .marquee-track{
+    animation-duration:32s;
+  }
+
+  /* Floating nav */
+  nav{
+    padding:8px 10px 0 !important;
+  }
+  nav > .glass{
+    padding:8px 10px !important;
+    gap:8px !important;
+  }
+  nav a{
+    min-height:40px;
+  }
+  nav a:first-child{
+    padding:8px 11px !important;
+    font-size:11px !important;
+  }
+  nav a:last-child{
+    padding:9px 14px !important;
+    font-size:11px !important;
+    white-space:nowrap;
+  }
+  nav .hide-sm{
+    display:none;
+  }
+
+  /* Hero */
+  main section:first-child{
+    padding-top:52px !important;
+    padding-bottom:64px !important;
+  }
+  main section:first-child h1{
+    font-size:clamp(1.85rem,9vw,2.55rem) !important;
+    line-height:1.25 !important;
+    margin:14px 0 16px !important;
+  }
+  main section:first-child p{
+    font-size:14px !important;
+    line-height:1.8 !important;
+    margin:0 auto 25px !important;
+    max-width:330px !important;
+  }
+  main section:first-child > .wrap > a{
+    width:100%;
+    max-width:300px;
+    text-align:center;
+    padding:14px 20px !important;
+  }
+
+  /* Stats become a compact 3-column strip */
+  main section:first-child .glass{
+    width:100%;
+    margin-top:38px !important;
+    padding:14px 10px !important;
+    gap:0 !important;
+    display:grid !important;
+    grid-template-columns:repeat(3,1fr);
+  }
+  main section:first-child .glass > div{
+    padding:0 7px;
+  }
+  main section:first-child .glass > div:nth-child(2),
+  main section:first-child .glass > div:nth-child(4){
+    width:1px !important;
+    justify-self:center;
+    padding:0;
+  }
+  main section:first-child .glass .pop{
+    font-size:17px !important;
+  }
+  main section:first-child .glass div div:last-child{
+    font-size:9px !important;
+    line-height:1.4;
+  }
+
+  /* Product sections */
+  #shop{
+    padding-bottom:38px !important;
+  }
+  #shop > section{
+    margin-bottom:48px !important;
+  }
+  #shop > section:last-child{
+    margin-bottom:0 !important;
+  }
+  #shop h2{
+    font-size:1.05rem !important;
+    line-height:1.5 !important;
+  }
+  .section-num{
+    font-size:10px;
+    flex:none;
+  }
+
+  /* On phones show one full card + a small peek of the next card.
+     This is easier to understand and swipe than 44% cards. */
+  .rail-track{
+    gap:12px !important;
+    padding-left:1px;
+    padding-right:1px;
+    scroll-padding-inline:1px;
+    -webkit-overflow-scrolling:touch;
+  }
+  .rail-card{
+    width:min(82vw,320px) !important;
+  }
+  .rail-card .tile-art{
+    border-radius:17px;
+  }
+  .rail-card{
+    border-radius:19px !important;
+    padding:10px !important;
+  }
+  .rail-card h3{
+    font-size:13px !important;
+    min-height:0 !important;
+    margin-bottom:9px !important;
+  }
+  .rail-card .btn-accent{
+    min-height:44px;
+    font-size:13px !important;
+  }
+  .badge{
+    top:10px;
+    right:10px;
+    font-size:9px;
+    padding:5px 8px;
+  }
+
+  /* Footer */
+  footer{
+    padding:0 10px 20px !important;
+  }
+  footer > .glass{
+    padding:28px 18px 20px !important;
+    border-radius:22px !important;
+  }
+  #footer-grid{
+    gap:26px !important;
+  }
+  #footer-grid > div{
+    text-align:center !important;
+  }
+  #footer-grid > div:nth-child(3) a{
+    word-break:break-word;
+  }
+  #footer-grid > div:nth-child(4){
+    gap:10px !important;
+  }
+}
+
+/* Medium phones / larger mobile */
+@media (min-width:400px) and (max-width:639px){
+  .rail-card{
+    width:76vw !important;
+    max-width:330px;
+  }
+}
+
+/* Tablets: make cards slightly larger and keep the rail comfortable */
+@media (min-width:640px) and (max-width:899px){
+  .rail-card{width:45%;}
+}
+
+/* Make the footer responsive without JS */
+@media (min-width:640px){
+  #footer-grid{
+    grid-template-columns:repeat(4,1fr) !important;
+  }
+}
+
+/* Landscape phones */
+@media (max-width:639px) and (orientation:landscape){
+  main section:first-child{
+    padding-top:38px !important;
+    padding-bottom:45px !important;
+  }
+  main section:first-child h1{
+    max-width:700px;
+  }
+}
+
+/* Accessibility / low-motion */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .marquee-track{animation:none;}
+}
+
 </style>
 </head>
 <body>
@@ -265,9 +480,7 @@ document.getElementById('marquee').innerHTML = items.concat(items).map(t=>`<span
 const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } }), {threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-if (window.matchMedia('(min-width:640px)').matches){
-  document.getElementById('footer-grid').style.gridTemplateColumns = 'repeat(4,1fr)';
-}
+
 </script>
 </body>
 </html>
